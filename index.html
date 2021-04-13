@@ -3,16 +3,21 @@
         <meta title="Titan's Daily JS Challenge">
         <meta name="viewport" content="width=device-width, initial-scale=1" user-scalable=no>
         <script src="https://unpkg.com/vue@next"></script>
-        <link rel="stylesheet" href="./assets/index.css">
+        <link rel="stylesheet" href="./assets/css/index.css">
     </head>
 </html>
 
 <body>
-    <div id="calculator">
+    <div id="app">
         <simple-calculator></simple-calculator>
     </div>
 
 
 
-    <script src="./assets/index.js"></script>
+    <script src="./index.js"></script>
+    <script src="./components/calculator.js"></script>
+
+    <script>
+        const mountedApp = app.mount('#app')
+    </script>
 </body>
