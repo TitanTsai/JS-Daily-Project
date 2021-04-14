@@ -59,20 +59,20 @@ app.component('simple-calculator',{
             this.operatorClicked=true;
         },
         plus(){
-            this.operator = (a,b) => a+b;
+            this.operator = (a,b) => b+a;
             this.setPrev();
             
         },
         minus(){
-            this.operator = (a,b) => a-b;
+            this.operator = (a,b) => b-a;
             this.setPrev()
         },
         times(){
-            this.operator = (a,b) => a*=b;
+            this.operator = (a,b) => b*a;
             this.setPrev()
         },
         devide(){
-            this.operator = (a,b) => a/=b;
+            this.operator = (a,b) => b/a;
             this.setPrev()
         },
         equals(){
