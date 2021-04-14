@@ -18,9 +18,11 @@ app.component('task-list',{
             <div class="task-item" v-for="(task,index) in tasklist" :key="task.index">
                 <div class="task-name-group">
                     <input type="checkbox" :id="task.id" v-model="task.isdone">
-                    <label :for="task.id" class="task-name" :class="{isdone:task.isdone}"><span></span>{{task.taskname}}</label>
+                    <label :for="task.id" class="task-name" :class="{isdone:task.isdone}"><span :style="{borderColor:color}"></span>{{task.taskname}}</label>
                 </div>
+                <p>{{getid}}</p>
                 <p class="task-date">{{task.duedate}}</p>
+                
                 <div class="remove_btn" @click="removetask(index)">X</div>
             </div>
         </div>
@@ -32,7 +34,7 @@ app.component('task-list',{
            tasklist:[
                {'id':0,
                 'taskname':'Create Todo App',
-                'catagory':'',
+                'catagory':'business',
                 'duedate':'Today',
                 'isdone':false},
            ],
@@ -55,6 +57,15 @@ app.component('task-list',{
         }
     },
     computed:{
-
+        color(){
+             let catname=this.tasklist[0].catagory;
+             let search=this.types.find(type => type.typename===catname);
+             return search.color;
+        },
+        getid(){
+            
         }
+        
+    }
+
 })
