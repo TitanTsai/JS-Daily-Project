@@ -18,9 +18,9 @@ app.component('task-list',{
             <div class="task-item" v-for="(task,index) in tasklist" :key="task.id">
                 <div class="task-name-group">
                     <input type="checkbox" :id="task.id" v-model="task.isdone">
-                    <label :for="task.id" class="task-name" :class="{isdone:task.isdone}"><span class="border"></span>{{task.taskname}}</label>
+                    <label :for="task.id" class="task-name" :class="{isdone:task.isdone}"><span :for="task.catagory" :style="{borderColor:getColor(task.catagory)}"></span>{{task.taskname}}</label>
                 </div>
-                {{getColor(task.catagory)}}
+                
                 <p class="task-date">today</p>
                 <div class="remove_btn" @click="removetask(index)">X</div>
             </div>
@@ -33,11 +33,16 @@ app.component('task-list',{
 
         <style scoped>
         .border{
-            borderColor: var(--task-cat-color)
+            border-color: var(--task-cat-color)
         }
         </style>
         
     `,
+    props:{
+        catcolor:{
+            type: String,
+            default:"#524EEE"}
+    },
     data(){
         return{
            idForTask:'',
@@ -66,20 +71,9 @@ app.component('task-list',{
             this.tasklist.splice(index,1)
         },
         getColor(catname){
-            let search = this.types.find(type => type.typename===catname).color;
-            return search
-            
-        }
-        
-            
+            let catcolor= this.types.find(type => type.typename===catname).color;
+            return `${catcolor}`;
+        },            
     },
-    computed:{
-        
-        borderColor(){
-            return {
-                '--task-cat-color':this.search
-            }
-        }
-    }
 
 })
