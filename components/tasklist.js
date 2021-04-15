@@ -50,7 +50,7 @@ app.component('task-list',{
                 'category':'business',
                 'duedate':'Today',
                 'isdone':true},
-                {'id':0,
+                {'id':1,
                 'taskname':'add color support',
                 'category':'business',
                 'duedate':'Today',
