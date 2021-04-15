@@ -15,18 +15,28 @@ app.component('task-list',{
                 <div class="task-add"  @click="addtask()">+</div>
             </div>
             
-            <div class="task-item" v-for="(task,index) in tasklist" :key="task.index">
+            <div class="task-item" v-for="(task,index) in tasklist" :key="task.id">
                 <div class="task-name-group">
                     <input type="checkbox" :id="task.id" v-model="task.isdone">
-                    <label :for="task.id" class="task-name" :class="{isdone:task.isdone}"><span :style="{borderColor:color}"></span>{{task.taskname}}</label>
+                    <label :for="task.id" class="task-name" :class="{isdone:task.isdone}"><span class="border"></span>{{task.taskname}}</label>
                 </div>
-                <p>{{getid}}</p>
-                <p class="task-date">{{task.duedate}}</p>
-                
+                {{getColor(task.catagory)}}
+                <p class="task-date">today</p>
                 <div class="remove_btn" @click="removetask(index)">X</div>
             </div>
         </div>
-        <p style="color:#fff">{{tasklist}}</p>
+
+        <div style="color:#fff">
+        <h3>debug</h3>
+        <p>{{tasklist}}</p>
+        </div>
+
+        <style scoped>
+        .border{
+            borderColor: var(--task-cat-color)
+        }
+        </style>
+        
     `,
     data(){
         return{
@@ -54,18 +64,22 @@ app.component('task-list',{
         },
         removetask(index){
             this.tasklist.splice(index,1)
-        }
-    },
-    computed:{
-        color(){
-             let catname=this.tasklist[0].catagory;
-             let search=this.types.find(type => type.typename===catname);
-             return search.color;
         },
-        getid(){
+        getColor(catname){
+            let search = this.types.find(type => type.typename===catname).color;
+            return search
             
         }
         
+            
+    },
+    computed:{
+        
+        borderColor(){
+            return {
+                '--task-cat-color':this.search
+            }
+        }
     }
 
 })
