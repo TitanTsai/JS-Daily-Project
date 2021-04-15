@@ -181,8 +181,8 @@ input[type="checkbox"]{
 input[type="checkbox"] + label span {
     display: inline-flex;
     box-sizing: border-box;
-    width:20px;
-    height:20px;
+    width:21px;
+    height:21px;
     border:3px solid;
     border-color:var(--contrast);
     border-radius:6px;
@@ -214,6 +214,7 @@ input[type="checkbox"]:checked + label span{
 
 .remove_btn{
     display:none;
+    cursor:pointer;
 }
 
 .showRemove{

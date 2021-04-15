@@ -9,7 +9,7 @@ app.component('task-list',{
                             <option value="" selected>category</option>
                             <option v-for="type in types">{{type.typename}}</option>
                         </select>
-                        <input class="date-selector" placeholder="due date" v-model="duedate"></input>
+                        <input type="date" class="date-selector" placeholder="due date" v-model="duedate"></input>
                     </div>
                 </div>
                 <div class="task-add"  @click="addtask()">+</div>
@@ -23,7 +23,7 @@ app.component('task-list',{
                     </div>
                     
                     <div class="btn-group">
-                        <div class="task-date">today</div>
+                        <div class="task-date">{{task.duedate}}</div>
                         <div class="remove_btn" :class="{showRemove:task.isdone}" @click="removetask(index)"><img src="./assets/images/remove.svg"></div>
                     </div>
                 </div>  
@@ -48,7 +48,7 @@ app.component('task-list',{
                {'id':0,
                 'taskname':'Create Todo App',
                 'category':'business',
-                'duedate':'Today',
+                'duedate':'Yesterday',
                 'isdone':true},
                 {'id':1,
                 'taskname':'add color support',
