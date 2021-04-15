@@ -6,7 +6,7 @@ app.component('task-list',{
                     <input class="task-input" type="text" v-model.trim="newtask" @keyup.enter="addtask" placeholder="Write Something">
                     <div style="margin-top:1em">
                         <select class="task-catagory" v-model="catagory">
-                            <option value="" selected disabled hidden>catagory</option>
+                            <option value="" selected>catagory</option>
                             <option v-for="type in types">{{type.typename}}</option>
                         </select>
                         <input class="date-selector" placeholder="due date" v-model="duedate"></input>
@@ -30,12 +30,6 @@ app.component('task-list',{
         <h3>debug</h3>
         <p>{{tasklist}}</p>
         </div>
-
-        <style scoped>
-        .border{
-            border-color: var(--task-cat-color)
-        }
-        </style>
         
     `,
     props:{
@@ -71,6 +65,10 @@ app.component('task-list',{
             this.tasklist.splice(index,1)
         },
         getColor(catname){
+            if(!catname){
+                return
+            }
+            
             let catcolor= this.types.find(type => type.typename===catname).color;
             return `${catcolor}`;
         },            

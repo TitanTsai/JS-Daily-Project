@@ -176,7 +176,7 @@ input[type="checkbox"] + label span {
     box-sizing: border-box;
     width:20px;
     height:20px;
-    border:2px solid;
+    border:3px solid;
     border-color:var(--secondary);
     border-radius:6px;
     cursor:pointer;
@@ -184,8 +184,7 @@ input[type="checkbox"] + label span {
 }
 
 input[type="checkbox"]:checked + label span{
-    border-color:#42416C;
-    background:url("/assets/images/check.svg") 1px 2px no-repeat, var(--secondary);
+    background:url("/assets/images/check.svg") 1px 2px no-repeat, #42416C;
 }
 
 .task-name{
