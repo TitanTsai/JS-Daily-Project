@@ -73,7 +73,7 @@ app.component('task-list',{
         },
         getColor(catname){
             let catcolor= this.types.find(type => type.typename===catname).color;
-            return `${catcolor}`;
+            return this.catcolor;
         },            
     },
 
