@@ -26,6 +26,12 @@ body{
     -moz-user-select: none;
 }
 
+#app{
+    display:flex;
+    justify-content: space-evenly;
+    margin:5em;
+}
+
 /* style of simple calculator*/
     
     .calculator_container{
