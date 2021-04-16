@@ -4,6 +4,7 @@
     --white:#F4F4F6;
     --background:#141432;
     --highlight:#26264E;
+    --bright:#313160;
     --upper:#1D1D42;
     --primary:#6FCF97;
     --secondary:#524EEE;
@@ -25,206 +26,223 @@ body{
     -moz-user-select: none;
 }
 
-.calculator_container{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.2em;
-    width:12em;
-    margin: auto;
-}
+/* style of simple calculator*/
+    
+    .calculator_container{
+        width:20em;
+        margin:1em;
+    }
 
-.calculator_output{
-    grid-column: 1 / 5 ;
-    font-size: 2em;
-    padding:0.5em;
-    word-wrap: break-word;
-    text-align: right;
-    color:#fff;
-    background-color: #242424;
-    border:1px solid var(--background);
-}
+    .calculator_output{
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+        height:100px;
+        font-size: 2em;
+        padding:20px;
+        word-wrap: break-word;
+        overflow: hidden;
+        color:#fff;
+        background-color: var(--background);
+        border-radius: 1em 1em 0 0 ;
+    }
 
 
+    .calculator_btngroup{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding:20px;
+        background-color: var(--highlight);
+        border-radius:0 0 1em 1em;
+    }
 
-.calculator_btn{
-    cursor: pointer;
-    background-color:var(--lighter);
-    color:#fff;
-    padding:1em;
-    text-align: center;
-    border:1px solid var(--background);
-    align-self: center;
-}
 
-.calculator_btn:hover{
-    background-color:#141414;
-}
+    .calculator_btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:54px;
+        height:54px;
+        border-radius: 0.5em;
+        cursor: pointer;
+        color:var(--caption);
+        background-color: var(--bright);
+        font-size:24px;
+        text-align: center;
+        margin:10px auto;
+    }
 
-.misc{
-    background-color: var(--contrast)
-}
+    .calculator_btn:hover{
+        background-color:#141414;
+    }
 
-.operators{
-    background-color: var(--primary)
-}
+    .misc{
+        color: var(--primary)
+    }
 
-.zero{
-    grid-column: 1/3;
-}
+    .operators{
+        color: var(--danger)
+    }
 
-.task-container{
-    width:30em;
-    margin:auto;
-}
+    .zero{
+        grid-column: 1/3;
+        width:123px;
+    }
 
-.task-header{
-    display:flex;
-    justify-content:space-between;
-    padding:1.5em 2em;
-    background:var(--highlight);
-    border-radius: 1em;
-}
+/* style of todolist*/
 
-.task-input{
-    background-color: transparent;
-    border:none;
-    color:var(--white);
-    font-size:32px;
-    font-weight: 300;
-    width:100%
-}
+    .task-container{
+        width:30em;
+        margin:1em;
+    }
 
-input::placeholder{
-    color:var(--white)
-}
+    .task-header{
+        display:flex;
+        justify-content:space-between;
+        padding:1.5em 2em;
+        background:var(--highlight);
+        border-radius: 1em;
+    }
 
-.task-add{
-    width: 40px;
-    height:40px;
-    border-radius: 50%;
-    text-align: center;
-    align-items: center;
-    vertical-align: middle;
-    font-weight: 300;
-    font-size: 32px;
-    color:var(--truewhite);
-    background-color: var(--primary);
-    cursor: pointer;
-}
+    .task-input{
+        background-color: transparent;
+        border:none;
+        color:var(--white);
+        font-size:32px;
+        font-weight: 300;
+        width:100%
+    }
 
-.task-add:hover{
-    background-color:var(--contrast)
-}
+    input::placeholder{
+        color:var(--white)
+    }
 
-.task-item{
-    border-radius: 1em;
-    display: flex;
-    align-items:center;
-    justify-content: space-between;
-    background-color: var(--highlight);
-    margin-bottom:1em;
-    padding:0 1em;
-    height:75px;
-}
+    .task-add{
+        width: 40px;
+        height:40px;
+        border-radius: 50%;
+        text-align: center;
+        align-items: center;
+        vertical-align: middle;
+        font-weight: 300;
+        font-size: 32px;
+        color:var(--truewhite);
+        background-color: var(--primary);
+        cursor: pointer;
+    }
 
-select {
-    appearance: none;
-    -webkit-appearance: none;
-    background-color: var(--background);
-    border: none;
-    padding: 4px 6px;
-    border-radius:6px;
-    color:var(--white);
-    font-size:1em;
-    cursor: pointer;
-    width:80px;
-}
+    .task-add:hover{
+        background-color:var(--contrast)
+    }
 
-select::-ms-expand{
-    display: none;
-}
+    .task-item{
+        border-radius: 1em;
+        display: flex;
+        align-items:center;
+        justify-content: space-between;
+        background-color: var(--highlight);
+        margin-bottom:1em;
+        padding:0 1em;
+        height:75px;
+    }
 
-.date-selector{
-    width:80px;
-    background-color: var(--background);
-    padding:4px 6px;
-    border-radius: 6px;
-    margin-left:1em;
-    border:none;
-    font-size:1em;
-    font-weight:300;
-    color:var(--white);
-    text-align:center;
-}
+    select {
+        appearance: none;
+        -webkit-appearance: none;
+        background-color: var(--background);
+        border: none;
+        padding: 4px 6px;
+        border-radius:6px;
+        color:var(--white);
+        font-size:1em;
+        cursor: pointer;
+        width:80px;
+    }
 
-.task-list{
-    height:23em;
-    overflow-x: scroll;
-    margin-top:1.2em;
-}
+    select::-ms-expand{
+        display: none;
+    }
 
-.task-name-group input{
-    display:inline-block;
-    margin:auto 0.5em;
-}
+    .date-selector{
+        width:80px;
+        background-color: var(--background);
+        padding:4px 6px;
+        border-radius: 6px;
+        margin-left:1em;
+        border:none;
+        font-size:1em;
+        font-weight:300;
+        color:var(--white);
+        text-align:center;
+    }
 
-.task-name-group{
-    display:inline-flex;
-    margin:auto 0;
-}
+    .task-list{
+        height:23em;
+        overflow: auto;
+        margin-top:1.2em;
+    }
 
-input[type="checkbox"]{
-    display:none;
-}
+    .task-name-group input{
+        display:inline-block;
+        margin:auto 0.5em;
+    }
 
-input[type="checkbox"] + label span {
-    display: inline-flex;
-    box-sizing: border-box;
-    width:21px;
-    height:21px;
-    border:3px solid;
-    border-color:var(--contrast);
-    border-radius:6px;
-    cursor:pointer;
-    margin:auto 0.5em;
-}
+    .task-name-group{
+        display:inline-flex;
+        margin:auto 0;
+    }
 
-input[type="checkbox"]:checked + label span{
-    background:url("/assets/images/check.svg") 1px 2px no-repeat, #42416C;
-}
+    input[type="checkbox"]{
+        display:none;
+    }
 
-.task-name{
-    color:var(--white);
-    font-weight: 200;
-    font-size:24px;
-    line-height:inherit;
-}
+    input[type="checkbox"] + label span {
+        display: inline-flex;
+        box-sizing: border-box;
+        width:21px;
+        height:21px;
+        border:3px solid;
+        border-color:var(--contrast);
+        border-radius:6px;
+        cursor:pointer;
+        margin:auto 0.5em;
+    }
 
-.task-date{
-    padding:2px 8px;
-    border-radius: 6px;
-    background-color: var(--secondary);
-    color:var(--white)
-}
+    input[type="checkbox"]:checked + label span{
+        background:url("/assets/images/check.svg") 1px 2px no-repeat, #42416C;
+    }
 
-.btn-group{
-    display:flex;
-}
+    .task-name{
+        color:var(--white);
+        font-weight: 200;
+        font-size:24px;
+        line-height:inherit;
+    }
 
-.remove_btn{
-    display:none;
-    cursor:pointer;
-}
+    .task-date{
+        padding:2px 8px;
+        border-radius: 6px;
+        background-color: var(--secondary);
+        color:var(--white)
+    }
 
-.showRemove{
-    display:inline-block;
-    margin-left:1em;
-    margin-right:0.5em;
-    padding:0;
-}
+    .btn-group{
+        display:flex;
+    }
 
-.isdone{
-    color:var(--disabled);
-    text-decoration: line-through;
-}
+    .remove_btn{
+        display:none;
+        cursor:pointer;
+    }
+
+    .showRemove{
+        display:inline-block;
+        margin-left:1em;
+        margin-right:0.5em;
+        padding:0;
+    }
+
+    .isdone{
+        color:var(--disabled);
+        text-decoration: line-through;
+    }

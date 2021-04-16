@@ -30,10 +30,6 @@ app.component('task-list',{
             </div>
         </div>
 
-        <div style="color:#fff">
-        <h3>debug</h3>
-        <p>{{tasklist}}</p>
-        </div>
         
     `,
     props:{
