@@ -266,10 +266,12 @@ body{
         height:100%;
         width:50px;
         top:0;
-        background-color:var(--primary);
-        opacity: 0;
         justify-content: center;
         align-items: center;
+        font-size:24px;
+        font-weight:100;
+        color:var(--white);
+        cursor: pointer;
     }
 
     .image-slider--prev{
@@ -281,18 +283,25 @@ body{
     }
 
     .image-slider--prev:hover{
-        opacity: 1;
-        transition:0.2s all ease-out
+        transition:0.2s all ease-out;
+        color:var(--primary);
     }
     
     .image-slider--next:hover{
-        opacity: 1;
-        transition:0.2s all ease-out
+        transition:0.2s all ease-out;
+        color:var(--primary);
     }
 
-    .image-slide--image{
+    .image-slider--image{
         width:640px;
         height:400px;
         object-fit:cover;
     }
     
+    .fade-enter, .fade-leave-to{
+        opacity: 0;
+    }
+
+    .fade-enter-active, .fade-leave-active{
+        transition: opacity 1s ;
+    }
