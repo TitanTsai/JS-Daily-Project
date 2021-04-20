@@ -1,16 +1,22 @@
 app.component('imageSlider',{
     template:`
     <div class="image-slider">
-        <div class="image-slider--prev" @click="changeIndex(-1)">&#10094;</div>
-       
-            <div v-for="(item,i) in images" :key="item.city">
-                <transition name="fade">
-                    <img class="image-slider--image" v-if="index===i"  :src="item.src">
-                </transition>
+        <transition-group tag="div" class="slider-container">
+        
+            <div class="image-slider--image" v-for="(image,index) in images" :key="index" v-show="index === currentIndex">
+                <img :src="image.src">
             </div>
+            
+        </transition-group>
 
-        <div class="image-slider--next" @click="changeIndex(1)">&#10095;</div>
+        <div class="slider-btn-prev" v-if="this.images.length>1" @click="changeIndex(-1);resetTimer()">&#10094;</div>
+        <div class="slider-btn-next" v-if="this.images.length>1" @click="changeIndex(1);resetTimer()">&#10095;</div>
+
+        <div class="slide-indicator-container">
+            <span class="slider-indicator" v-for="num in images.length" @click="this.currentIndex=num-1"></span>
+        </div>
     </div>
+    
     `,
     data(){
         return{
@@ -20,13 +26,13 @@ app.component('imageSlider',{
                 {"city":"Frankfurt","src":"./assets/images/eu-frankfurt.jpg"},
                 {"city":"London","src":"./assets/images/eu-london.jpg"}
             ],
-            index:0,
+            currentIndex:0,
             timer:null,
+            transitionName:'slide-in',
         }
     },
     mounted(){
-        //this.autoPlay();
-        //console.log('mounted')
+        this.autoPlay();
     },
     methods:{
         autoPlay(){
@@ -34,7 +40,8 @@ app.component('imageSlider',{
         },
         
         changeIndex(value){
-            this.index = (this.index + value + this.images.length) % this.images.length;
+            this.currentIndex = (this.currentIndex + value + this.images.length) % this.images.length;
+            return isActive=true;
         },
 
         resetTimer(){
