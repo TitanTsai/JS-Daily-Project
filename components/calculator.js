@@ -1,4 +1,4 @@
-app.component('simple-calculator',{
+app.component('calculator',{
     template:
     `<div class="calculator_container" id="calculator">
         <div class="calculator_output">
