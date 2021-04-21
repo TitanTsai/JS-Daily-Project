@@ -1,12 +1,24 @@
-Workplace for my daily javascript practice.
-Scheduled to do a simple widget everyday with Vue.js.
+# vue-daily
 
-//Components would be list here
+## Project setup
+```
+npm install
+```
 
-Day1. Simple Calculator
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-Day2. Task List
+### Compiles and minifies for production
+```
+npm run build
+```
 
-Day3. Task List Color Support
+### Lints and fixes files
+```
+npm run lint
+```
 
-Day4. Carousel
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
