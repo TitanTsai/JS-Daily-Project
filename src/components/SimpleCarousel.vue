@@ -1,16 +1,18 @@
 <template>
     <div class="image-slider">
-        <transition-group tag="div" class="slider-container">
         
+        <transition-group tag="div" class="slider-container" name="slide" mode="out-in">
             <div class="image-slider--image" v-for="(image,index) in images" :key="index" v-show="index === currentIndex">
                 <img :src="image.src">
             </div>
-            
         </transition-group>
 
         <div class="slider-btn-prev" v-if="this.images.length>1" @click="changeIndex(-1);resetTimer()">&#10094;</div>
         <div class="slider-btn-next" v-if="this.images.length>1" @click="changeIndex(1);resetTimer()">&#10095;</div>
-
+        
+        <transition-group tag="div" class="slide-indicator-container" name="fade">
+            <span class="slider-indicator" :class="{slideisActive:num-1===currentIndex}" v-for="num in images.length" :key="num-1" @click="currentIndex=num-1;resetTimer()"></span>
+        </transition-group>
     </div>
 </template>
 
@@ -26,7 +28,7 @@ export default {
             ],
             currentIndex:0,
             timer:null,
-            transitionName:'slide-in',
+            
         }
     },
     mounted(){
@@ -34,7 +36,7 @@ export default {
     },
     methods:{
         autoPlay(){
-            this.timer = setInterval(()=>{this.changeIndex(1)},5000)
+            this.timer = setInterval(()=>{this.changeIndex(1)},8000)
         },
         
         changeIndex(value){
@@ -50,25 +52,24 @@ export default {
 </script>
 
 <style>
-.image-slider{
+    .image-slider{
         position:relative;
         width:640px;
         height:400px;
         margin:auto;
+        overflow:hidden;
     }
 
     .slider-container{
         position:relative;
         width:100%;
         height:100%;
-        overflow: hidden;
         margin:0 auto;
     }
 
     .slider-image{
         position:absolute;
-        width:100%;
-        height:100%
+
     }
 
     .slider-image img{
@@ -129,15 +130,31 @@ export default {
         background-color:var(--primary);
     }
 
-    .slide-in-enter{
-        transform:translateX(-100%)
+    .slideisActive{
+        background-color: var(--primary);
     }
 
-    .slide-in-enter-active{
-        transition: transform 1s;
+
+    /**Transition Group */
+
+    .slide-fade-enter-active {
+    transition: all 0.3s ease-out;
     }
 
-    .slide-in-enter-to{
-        transform:translateX(0)
+    .slide-fade-leave-active {
+    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+    }
+
+    .slide-fade-enter-from,
+    .slide-fade-leave-to {
+    transform: translateX(20px);
+    opacity: 0;}
+
+    .fade-enter-active,.fade-leave-active{
+        transition:all 0.3s ease-in
+    }
+
+    .fade-enter-from, .fade-leave-to{
+        opacity:0;
     }
 </style>
