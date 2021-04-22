@@ -1,8 +1,9 @@
 # About
 Playground for my daily JS practice. Plans to do a simple component everyday,
-what is done by now:
+what is done so far:
 
 Day 1. Simple Calculator
+
 Day 2. Task List
 Day 3. Task List color support
 Day 4. Simple Carousel

@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <h1>Components</h1>
-    <SimpleCarousel></SimpleCarousel>
+    <!--<SimpleCarousel></SimpleCarousel>-->
     
     <div class="container">
       <!--<SimpleCalculator></SimpleCalculator>
