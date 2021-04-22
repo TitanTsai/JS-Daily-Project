@@ -1,11 +1,9 @@
 <template>
     <div>
         <input v-model="dateValue" @click="openModal=true">
-
         <div class="dp-container" v-show="openModal">
-            
             <div class="dp-instant-container">
-                <div class="dp-instant-button">Today</div>
+                <div class="dp-instant-button" @click="setInstant()">Today</div>
                 <div class="dp-instant-button">Tomorrow</div>
                 <div class="dp-instant-button">In 2 Days</div>
             </div>
@@ -34,7 +32,6 @@
 
 <script>
 export default {
-
     data(){
         return{
             current : new Date(),
@@ -50,7 +47,6 @@ export default {
     },
     methods:{
         renderCalender(){
-            this.current.setDate(1);
 
             const FirstWeekDay = new Date(this.current.getFullYear(), this.current.getMonth(), 1).getDay();
             const PrevMonthDay = new Date(this.current.getFullYear(), this.current.getMonth(),0).getDate();
@@ -74,8 +70,10 @@ export default {
             this.calender.forEach(item=> item.isActive = false);
             this.dateValue = new Date(this.current.setDate(index+1)).toLocaleDateString();
             this.calender[index].isActive = true
+        },
+        setInstant(){
+            this.dateValue = new Date().toLocaleDateString();
         }
-    
     }
 }
 </script>
