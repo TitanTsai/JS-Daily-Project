@@ -5,11 +5,16 @@ what is done so far:
 Day 1. Simple Calculator
 
 Day 2. Task List
+
 Day 3. Task List color support
+
 Day 4. Simple Carousel
+
 // Day 5. FileStructure to Vue CLI
+
 Day 6. DatePicker wireframe
 
+Day 7. DatePicker function 
 # vue-daily
 
 ## Project setup
