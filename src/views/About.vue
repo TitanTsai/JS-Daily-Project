@@ -4,9 +4,7 @@
     <!--<SimpleCarousel></SimpleCarousel>-->
     
     <div class="container">
-      <!--<SimpleCalculator></SimpleCalculator>
-      <TaskList></TaskList>-->
-      <DatePicker></DatePicker>
+      <TaskList></TaskList>
     </div>
   </div>
 </template>
@@ -15,14 +13,13 @@
 
 //import SimpleCalculator from '@/components/SimpleCalculator'
 //import SimpleCarousel from '@/components/SimpleCarousel'
-//import TaskList from '@/components/TaskList'
-import DatePicker from '@/components/DatePicker'
+import TaskList from '@/components/TaskList'
+//import DatePicker from '@/components/DatePicker'
 export default {
   components:{
     //SimpleCalculator,
     //SimpleCarousel,
-    //TaskList,
-    DatePicker
+    TaskList,
   }
 }
 </script>

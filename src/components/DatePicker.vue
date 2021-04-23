@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input v-model="dateValue" @click="openModal=true">
+        <input class="dp-input" type="text" v-model="dateValue" @click="openModal=!openModal">
         <div class="dp-container" v-show="openModal">
             <div class="dp-instant-container">
                 <div class="dp-instant-button" @click="setInstant()">Today</div>
@@ -32,6 +32,7 @@
 
 <script>
 export default {
+    props: ['props'],
     data(){
         return{
             current : new Date(),
@@ -72,13 +73,22 @@ export default {
             this.calender[index].isActive = true
         },
         setInstant(){
-            this.dateValue = new Date().toLocaleDateString();
+            this.dateValue = new Date();
         }
     }
 }
 </script>
 
 <style>
+    .dp-input{
+        width:320px;
+        font-size:1em;
+        color:var(--caption);
+        border:none;
+        border-radius: 4px;
+        background-color: var(--upper);
+        padding:10px;
+    }
     .dp-container{
         margin-top:0.5em;
         display:block;

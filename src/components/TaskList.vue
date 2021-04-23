@@ -1,228 +1,168 @@
 <template>
     <div class="task-container">
-            <div class="task-header">
-                <div style="width:75%">
-                    <input class="task-input" type="text" v-model.trim="newtask" @keyup.enter="addtask" placeholder="Write Something">
-                    <div style="margin-top:1em">
-                        <select class="task-category" v-model="category">
-                            <option value="" selected>category</option>
-                            <option v-for="type in types" :key="type.id">{{type.typename}}</option>
-                        </select>
-                        <input type="date" class="date-selector" placeholder="due date" v-model="duedate" />
-                    </div>
-                </div>
-                <div class="task-add"  @click="addtask()">+</div>
+        <div class="task-header">
+            <div class="task-input">
+                <input v-model="taskName" placeholder="Write Somthing" @keypress.enter="addTask()">
+                <div class="task-add-btn" @click="addTask()">+</div>
             </div>
-            
-            <div class="task-list">
-                <div class="task-item" v-for="(task,index) in tasklist" :key="task.id">
-                    <div class="task-name-group">
-                        <input type="checkbox" :id="task.id" v-model="task.isdone">
-                        <label :for="task.id" class="task-name" :class="{isdone:task.isdone}"><span :for="task.category" :style="{borderColor:getColor(task.category)}"></span>{{task.taskname}}</label>
-                    </div>
-                    
-                    <div class="btn-group">
-                        <div class="task-date">{{task.duedate}}</div>
-                        <div class="remove_btn" :class="{showRemove:task.isdone}" @click="removetask(index)"><img src="../assets/images/remove.svg"></div>
-                    </div>
-                </div>  
+            <div class="task-options">
+                <!--<div class="task-category">
+                    <p class="taskOption-label">Category:</p>
+                </div>-->
+                <div class="task-duedate">
+                    <p class="taskOption-label">Due Date</p>
+                    <DateInput v-model="dateValue"></DateInput>
+                    {{dateValue}}
+                </div>
             </div>
         </div>
+        <div class="task-list">
+            <div class="task-item" v-for="(task,index) in taskList" :key="index">
+                <div class="task-item-left">
+                    <input type="checkbox" v-model="task.isDone" :id="task.id">
+                    <label :for="task.id" :class="{isDone:task.isDone}" class="task-item-name"><span></span>{{task.name}}</label>
+                </div>
+                <div class="task-item-right">
+                    <div>{{task.duedate}}</div>
+                    <div class="remove" :class="{showRemove:task.isDone}"><img src="../assets/images/remove.svg"></div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+    
 </template>
 
 <script>
+import DateInput from '@/components/DatePicker'
 export default {
+    components:{DateInput},
     data(){
         return{
-            idForTask:'',
-            tasklist:[
-                {'id':0,'taskname':'Create Todo App','category':'business','duedate':'Yesterday','isdone':true},
-                {'id':1,'taskname':'add color support','category':'business','duedate':'Today','isdone':false},
+            dateValue:'',
+            taskName:'',
+            taskList:[
+                {'id':0,'name':'Create Todo App','category':'business','duedate':'Yesterday','isDone':true},
+                {'id':1,'name':'add color support','category':'business','duedate':'Today','isDone':false},
             ],
-            newtask:'',
-            types:[{'typename':'business','color':'#524EEE'},{'typename':'personal','color':'#6FCF97'}]
-            }
+        }
     },
     methods:{
-        addtask(){
-            if(this.newtask.trim().length===0){
+        addTask(){
+            if(this.taskName.trim().length===0){
                 return
             }
 
-            this.tasklist.unshift({'id':this.tasklist.length ,'taskname':this.newtask,'category':this.category,'duedate':this.duedate,'isdone':false})
-            this.newtask=''
-            this.duedate=''
-        },
-        removetask(index){
-            this.tasklist.splice(index,1)
-        },
-        getColor(catname){
-            if(!catname){
-                return
-            }
-
-            let catcolor= this.types.find(type => type.typename===catname).color;
-            return `${catcolor}`;
-        }           
+            this.taskList.unshift({'id':this.taskList.length ,'name':this.taskName,'category':this.category,'duedate':this.dateValue,'isDone':false});
+            this.taskName=''
+        }
     }
 }
 </script>
 
 <style scoped>
     .task-container{
-        width:30em;
+        width:480px;
         margin:1em;
     }
 
     .task-header{
-        display:flex;
-        justify-content:space-between;
-        padding:1.5em 2em;
-        background:var(--highlight);
+        width:480px;
+        height: 240px;
+        background-color:var(--highlight);
         border-radius: 1em;
+        padding:2em;
+        box-sizing: border-box;
+        margin-bottom:1em;
     }
 
     .task-input{
-        background-color: transparent;
-        border:none;
-        color:var(--white);
-        font-size:32px;
-        font-weight: 300;
-        width:100%
-    }
-
-    input::placeholder{
-        color:var(--white)
-    }
-
-    .task-add{
-        width: 40px;
-        height:40px;
-        border-radius: 50%;
-        text-align: center;
-        align-items: center;
-        vertical-align: middle;
-        font-weight: 300;
-        font-size: 32px;
-        color:var(--truewhite);
-        background-color: var(--primary);
-        cursor: pointer;
-    }
-
-    .task-add:hover{
-        background-color:var(--contrast)
-    }
-
-    .task-item{
-        border-radius: 1em;
-        display: flex;
-        align-items:center;
+        display:flex;
+        width:100%;
         justify-content: space-between;
-        background-color: var(--highlight);
-        margin-bottom:1em;
-        padding:0 1em;
-        height:75px;
     }
 
-    select {
-        appearance: none;
-        -webkit-appearance: none;
-        background-color: var(--background);
-        border: none;
-        padding: 4px 6px;
-        border-radius:6px;
-        color:var(--white);
-        font-size:1em;
-        cursor: pointer;
-        width:80px;
-    }
-
-    select::-ms-expand{
-        display: none;
-    }
-
-    .date-selector{
-        width:80px;
-        background-color: var(--background);
-        padding:4px 6px;
-        border-radius: 6px;
-        margin-left:1em;
+    .task-input input{
+        font-weight: 500;
+        font-size:2em;
+        background-color:transparent;
+        color:var(--truewhite);
         border:none;
+        border-bottom:1px solid var(--upper);
+        padding-bottom:0.25em;
+        -webkit-appearance: none;
+        margin-bottom: 1em;
+    }
+
+    .task-add-btn{
+        background-color:var(--primary);
+        width:40px;
+        height:40px;
+        display: flex;
+        border-radius: 20px;
+        justify-content: center;
+        align-items: center;
+        color:var(--truewhite);
+        font-size: 2em;
+    }
+
+    .task-add-btn:hover{
+        background-color: var(--caption);
+    }
+
+    .task-catagory, .task-duedate{
+        display: block;
+        text-align: left;
+    }
+
+    .taskOption-label{
+        display:block;
+        margin:0;
+        color:var(--caption);
         font-size:1em;
-        font-weight:300;
-        color:var(--white);
-        text-align:center;
+        margin-bottom: 0.5em;
     }
 
     .task-list{
-        height:23em;
-        overflow: auto;
-        margin-top:1.2em;
+        width:480px
     }
 
-    .task-name-group input{
-        display:inline-block;
-        margin:auto 0.5em;
-    }
-
-    .task-name-group{
-        display:inline-flex;
-        margin:auto 0;
-    }
-
-    input[type="checkbox"]{
-        display:none;
-    }
-
-    input[type="checkbox"] + label span {
-        display: inline-flex;
+    .task-item{
+        display: flex;
         box-sizing: border-box;
-        width:21px;
-        height:21px;
-        border:3px solid;
-        border-color:var(--contrast);
-        border-radius:6px;
-        cursor:pointer;
-        margin:auto 0.5em;
+        background-color: var(--highlight);
+        width:480px;
+        border-radius: 1em;
+        padding:1em;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1em;
     }
 
-    input[type="checkbox"]:checked + label span{
-        background:url("../assets/images/check.svg") 1px 2px no-repeat, #42416C;
-    }
-
-    .task-name{
+    .task-item-name{
+        font-weight:300;
+        font-size:1.5em;
         color:var(--white);
-        font-weight: 200;
-        font-size:24px;
-        line-height:inherit;
+        padding-left:0.5em;
     }
 
-    .task-date{
-        padding:2px 8px;
-        border-radius: 6px;
-        background-color: var(--secondary);
-        color:var(--white)
+    .task-item-right{
+        display:inline-flex;
+        align-self: center;
     }
 
-    .btn-group{
-        display:flex;
-    }
-
-    .remove_btn{
-        display:none;
-        cursor:pointer;
+    .remove{
+        display: none;
     }
 
     .showRemove{
-        display:inline-block;
-        margin-left:1em;
-        margin-right:0.5em;
-        padding:0;
+        display: block;
     }
 
-    .isdone{
-        color:var(--disabled);
+    .isDone{
         text-decoration: line-through;
+        color:var(--disabled)
     }
 
 </style>
