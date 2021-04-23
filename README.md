@@ -15,6 +15,8 @@ Day 4. Simple Carousel
 Day 6. DatePicker wireframe
 
 Day 7. DatePicker function 
+
+Day 8. Implement datepicker with tasklist, tasklist rewrite
 # vue-daily
 
 ## Project setup
