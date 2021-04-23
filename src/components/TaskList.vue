@@ -24,7 +24,7 @@
                 </div>
                 <div class="task-item-right">
                     <div>{{task.duedate}}</div>
-                    <div class="remove" :class="{showRemove:task.isDone}"><img src="../assets/images/remove.svg"></div>
+                    <div class="remove" :class="{showRemove:task.isDone}" @click="removeTask(index)"><img src="../assets/images/remove.svg"></div>
                 </div>
                 
             </div>
@@ -56,6 +56,9 @@ export default {
 
             this.taskList.unshift({'id':this.taskList.length ,'name':this.taskName,'category':this.category,'duedate':this.dateValue,'isDone':false});
             this.taskName=''
+        },
+        removeTask(index){
+            this.taskList.splice(index,1)
         }
     }
 }
