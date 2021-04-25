@@ -36,17 +36,25 @@
 
 <script>
 import DateInput from '@/components/DatePicker'
+import axios from 'axios'
 export default {
     components:{DateInput},
     data(){
         return{
             dateValue:'',
             taskName:'',
-            taskList:[
-                {'id':0,'name':'Create Todo App','category':'business','duedate':'Yesterday','isDone':true},
-                {'id':1,'name':'add color support','category':'business','duedate':'Today','isDone':false},
-            ],
+            taskList:null,
         }
+    },
+    created(){
+        axios
+        .get('https://my-json-server.typicode.com/TitanTsai/JS-Daily-Project/db')
+        .then(response=>{
+            this.taskList = response.data
+        })
+        .catch(error=>{
+            console.log(error)
+        })
     },
     methods:{
         addTask(){
