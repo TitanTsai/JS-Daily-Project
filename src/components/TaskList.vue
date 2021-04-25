@@ -11,9 +11,10 @@
                 </div>-->
                 <div class="task-duedate">
                     <p class="taskOption-label">Due Date</p>
-                    <DateInput v-model="dateValue"></DateInput>
-                    {{dateValue}}
+                    <DateInput v-model:modelValue="dateValue"></DateInput>
+                    
                 </div>
+                <p>{{dateValue}}</p>
             </div>
         </div>
         <div class="task-list">
@@ -45,6 +46,7 @@ export default {
             dateValue:'',
             taskName:'',
             taskList:null,
+            taskIndex:0,
         }
     },
     created(){
@@ -68,7 +70,7 @@ export default {
         removeTask(index){
             this.taskList.splice(index,1)
         }
-    }
+    },
 }
 </script>
 

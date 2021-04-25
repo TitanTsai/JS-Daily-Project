@@ -7,12 +7,7 @@
 
 <script>
 export default {
-    props:{
-        value:{
-            type:String,
-            default:new Date().toLocaleDateString(),
-        }
-    },
+    props:['modelValue'],
     data(){
         return{
             dateValue:'',
