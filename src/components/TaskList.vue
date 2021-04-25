@@ -36,7 +36,8 @@
 
 <script>
 import DateInput from '@/components/DatePicker'
-import axios from 'axios'
+import EventService from '@/services/EventService.js'
+
 export default {
     components:{DateInput},
     data(){
@@ -47,8 +48,7 @@ export default {
         }
     },
     created(){
-        axios
-        .get('https://my-json-server.typicode.com/TitanTsai/JS-Daily-Project/db')
+        EventService.getTasks()
         .then(response=>{
             this.taskList = response.data
         })
@@ -104,6 +104,7 @@ export default {
         padding-bottom:0.25em;
         -webkit-appearance: none;
         margin-bottom: 1em;
+        width:340px;
     }
 
     .task-add-btn{
