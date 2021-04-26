@@ -1,7 +1,6 @@
 <template>
     <div>
-        <input class="dp-input" id="dpInput" type="date" :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)" @click="openModal=!openModal">
+        <input class="dp-input" type="text" v-model="dateValue">
         <div class="dp-container" v-show="openModal">
             <div class="dp-instant-container">
                 <div class="dp-instant-button" @click="setInstant()">Today</div>
@@ -41,8 +40,7 @@ export default {
             calender: [],
             prevWeekDays:[],
             isActive:false,
-            dateValue:'',
-            openModal:false,
+            openModal:true,
         }
     },
     created(){
@@ -71,18 +69,15 @@ export default {
         },
         setValue(index){
             this.calender.forEach(item=> item.isActive = false);
+            this.calender[index].isActive = true;
             this.dateValue= new Date(this.current.setDate(index+1)).toLocaleDateString();
-            this.calender[index].isActive = true
-            this.document.querySelector('#dpInput').value=this.dateValue
         },
         setInstant(){
             this.dateValue = new Date();
         }
-    },computed(){
-       
+    }
     }
     
-}
 </script>
 
 <style>

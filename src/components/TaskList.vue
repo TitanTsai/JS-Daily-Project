@@ -12,7 +12,6 @@
                 <div class="task-duedate">
                     <p class="taskOption-label">Due Date</p>
                     <DateInput v-model:modelValue="dateValue"></DateInput>
-                    
                 </div>
                 <p>{{dateValue}}</p>
             </div>
@@ -43,10 +42,10 @@ export default {
     components:{DateInput},
     data(){
         return{
-            dateValue:'',
             taskName:'',
             taskList:null,
             taskIndex:0,
+            dateValue:'',
         }
     },
     created(){
