@@ -2,22 +2,28 @@
     <div v-for="(type,index) in types" :key="index" class="cp-container">
         <input type="radio"  :id="type.typeName"  :value="type.typename" name="catSelect" v-model="selected"/>
         <label class="cp-label" :for="type.typename">{{type.typename}}</label>
+
     </div>
 
 </template>
 
 <script>
+import EventService from '@/services/EventService.js'
 export default {
     props:{
         modelValue:String,
     },
+    created(){
+        EventService.getCategory()
+        .then(response=>{
+            this.types = response.data
+        }).catch(error=>{
+            console.log(error)
+        })
+    },
     data(){
         return{ 
-            types:[
-                {'typename':'Business','color':'#6FCF97'},
-                {'typename':'Personal','color':'#524EEE'},
-                {'typename':'Important','color':'#D06969'},
-                ],
+            types:[],
         }
     },
     methods:{

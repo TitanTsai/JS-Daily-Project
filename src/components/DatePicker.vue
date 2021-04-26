@@ -47,8 +47,9 @@ export default {
         }
     },
     created(){
-        setTimeout(this.renderCalender(),1000);
         this.dateValue = new Date().toLocaleDateString();
+        setTimeout(this.renderCalender(),0);
+        
     },
     methods:{
         renderCalender(){

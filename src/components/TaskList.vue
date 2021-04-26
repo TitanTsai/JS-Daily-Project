@@ -23,7 +23,7 @@
             <div class="task-item" v-for="task in taskList" :key="task.id">
                 <div class="task-item-left">
                     <input type="checkbox" v-model="task.isDone" :id="task.id">
-                    <label :for="task.id" class="task-item-name" :class="{isdone:task.isdone}"><span></span>{{task.name}}</label>
+                    <label :for="task.id" class="task-item-name" :class="{isdone:task.isdone}"><span :for="task.category"></span>{{task.name}}</label>
                 </div>
                 <div class="task-item-right">
                     <div>{{task.duedate}}</div>

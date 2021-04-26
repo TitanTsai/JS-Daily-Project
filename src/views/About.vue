@@ -13,7 +13,7 @@
 
 //import SimpleCalculator from '@/components/SimpleCalculator'
 //import SimpleCarousel from '@/components/SimpleCarousel'
-import TaskList from '@/components/TaskList_old'
+import TaskList from '@/components/TaskList'
 
 export default {
   components:{
