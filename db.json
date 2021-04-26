@@ -3,16 +3,22 @@
     {
         "id":0,
         "name":"Create Todo App",
-        "category":"business",
+        "category":"Business",
         "duedate":"Yesterday",
         "isDone":true
     },
     {
         "id":1,
         "name":"add color support",
-        "category":"business",
+        "category":"Business",
         "duedate":"Today",
         "isDone":false
     }
+    ],
+    
+    "types":[
+        {"typename":"Business","color":"#6FCF97"},
+        {"typename":"Personal","color":"#524EEE"},
+        {"typename":"Important","color":"#D06969"}
     ]
 }

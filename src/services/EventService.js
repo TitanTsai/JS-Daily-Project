@@ -12,5 +12,9 @@ const apiClient = axios.create({
 export default{
     getTasks(){
         return apiClient.get('/taskList')
+    },
+
+    getCategory(){
+        return apiClient.get('/types')
     }
 }

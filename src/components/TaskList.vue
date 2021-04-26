@@ -8,28 +8,30 @@
             <div class="task-options">
                 <div class="task-catagory">
                     <p class="taskOption-label">Category:</p>
-                    <ColorPicker></ColorPicker>
+                    <ColorPicker v-model:modelValue="selected"></ColorPicker>
                 </div>
+
+                {{selected}}
                 <div class="task-duedate">
                     <p class="taskOption-label">Due Date:</p>
                     <DateInput v-model:modelValue="dateValue"></DateInput>
                 </div>
             </div>
         </div>
+        
         <div class="task-list">
-            <div class="task-item" v-for="(task,index) in taskList" :key="index">
+            <div class="task-item" v-for="task in taskList" :key="task.id">
                 <div class="task-item-left">
                     <input type="checkbox" v-model="task.isDone" :id="task.id">
-                    <label :for="task.id" :class="{isDone:task.isDone}" class="task-item-name"><span></span>{{task.name}}</label>
+                    <label :for="task.id" class="task-item-name" :class="{isdone:task.isdone}"><span></span>{{task.name}}</label>
                 </div>
                 <div class="task-item-right">
                     <div>{{task.duedate}}</div>
                     <div class="remove" :class="{showRemove:task.isDone}" @click="removeTask(index)"><img src="../assets/images/remove.svg"></div>
                 </div>
-                
+               
             </div>
-        </div>
-        
+        </div>        
     </div>
     
 </template>
@@ -50,7 +52,11 @@ export default {
             taskList:null,
             taskIndex:0,
             dateValue:'',
-            types:[{'typeName':'business','color':'#524EEE'},{'typeName':'personal','color':'#6FCF97'}]
+            selected:'',
+            types:
+                [{'typeName':'Business','color':'#6FCF97'},
+                {'typeName':'Personal','color':'#524EEE'},
+                {'typeName':'Important','color':'#D06969'}]
         }
     },
     created(){
@@ -68,20 +74,13 @@ export default {
                 return
             }
 
-            this.taskList.unshift({'id':this.taskList.length ,'name':this.taskName,'category':this.category,'duedate':this.dateValue,'isDone':false});
+            this.taskList.unshift({'id':this.taskList.length ,'name':this.taskName,'category':this.selected,'duedate':this.dateValue,'isDone':false});
             this.taskName=''
         },
         removeTask(index){
             this.taskList.splice(index,1)
         },
-        getColor(catname){
-            if(!catname){
-                return
-            }
-
-            let catcolor= this.types.find(type => type.typeName===catname).color;
-            return `${catcolor}`;
-        }
+        
     },
     computed:{
         

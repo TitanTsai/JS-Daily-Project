@@ -1,27 +1,38 @@
 <template>
     <div v-for="(type,index) in types" :key="index" class="cp-container">
-        <input type="radio"  :id="type.typeName"  :value="type.typeName" name="catSelect" v-model="selected"/>
-        <label class="cp-label" :for="type.typeName">{{type.typeName}}</label>
+        <input type="radio"  :id="type.typeName"  :value="type.typename" name="catSelect" v-model="selected"/>
+        <label class="cp-label" :for="type.typename">{{type.typename}}</label>
     </div>
-    {{selected}}
+
 </template>
 
 <script>
 export default {
-    props:['modelValue'],
+    props:{
+        modelValue:String,
+    },
     data(){
         return{ 
             types:[
-                {"typeName":"Business","color":"#6FCF97"},
-                {"typeName":"Personal","color":"#524EEE"},
-                {"typeName":"Important","color":"#D06969"},
+                {'typename':'Business','color':'#6FCF97'},
+                {'typename':'Personal','color':'#524EEE'},
+                {'typename':'Important','color':'#D06969'},
                 ],
-            selected:'',
         }
     },
     methods:{
         setCat(){
             
+        }
+    },
+    computed: {
+        selected: {
+        get() {
+            return this.modelValue
+        },
+        set(value) {
+            this.$emit('update:modelValue', value)
+        }
         }
     }
 }
@@ -64,5 +75,9 @@ export default {
 
     input[type="radio"]{
         -webkit-appearance: none;
+    }
+
+    .selected{
+        background-color:var(--catcolor)
     }
 </style>

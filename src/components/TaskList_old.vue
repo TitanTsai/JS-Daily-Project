@@ -8,17 +8,23 @@
                             <option value="" selected>category</option>
                             <option v-for="type in types" :key="type.id">{{type.typename}}</option>
                         </select>
-                        <input type="date" class="date-selector" placeholder="due date" v-model="duedate" />
+
+                        <ColorPicker v-model:modelValue="selected"></ColorPicker>
+                        
+                        
+                        <p class="taskOption-label">Due Date:</p>
+                        <date-picker v-model:modelValue="dateValue"></date-picker>
+                        
                     </div>
                 </div>
                 <div class="task-add"  @click="addtask()">+</div>
             </div>
             
             <div class="task-list">
-                <div class="task-item" v-for="(task,index) in tasklist" :key="task.id">
+                <div class="task-item" v-for="(task,index) in taskList" :key="task.id">
                     <div class="task-name-group">
                         <input type="checkbox" :id="task.id" v-model="task.isdone">
-                        <label :for="task.id" class="task-name" :class="{isdone:task.isdone}"><span :for="task.category" :style="{borderColor:getColor(task.category)}"></span>{{task.taskname}}</label>
+                        <label :for="task.id" class="task-name" :class="{isdone:task.isdone}"><span :for="task.category" :style="{borderColor:getColor(task.category)}"></span>{{task.name}}</label>
                     </div>
                     
                     <div class="btn-group">
@@ -31,17 +37,33 @@
 </template>
 
 <script>
+import DatePicker from '@/components/DatePicker'
+import ColorPicker from '@/components/ColorPicker'
+import EventService from '@/services/EventService.js'
 export default {
+  components: { DatePicker, ColorPicker },
     data(){
         return{
-            idForTask:'',
-            tasklist:[
-                {'id':0,'taskname':'Create Todo App','category':'business','duedate':'Yesterday','isdone':true},
-                {'id':1,'taskname':'add color support','category':'business','duedate':'Today','isdone':false},
-            ],
+            category:'',
+            dateValue:'',
+            selected:'',
             newtask:'',
-            types:[{'typename':'business','color':'#524EEE'},{'typename':'personal','color':'#6FCF97'}]
+            taskList:[],
+            types:[{'typename':'business','color':'#524EEE'},{'typename':'personal','color':'#6FCF97'},{'typename':'important','color':'#D06969'}]
             }
+    },
+    created(){
+        EventService.getTasks()
+        .then(response=>{
+            this.taskList = response.data
+        })
+        .catch(error=>{
+            console.log(error)
+        }),
+        EventService.getCategory()
+        .then(response=>{
+            console.log(response.data)
+        })
     },
     methods:{
         addtask(){
@@ -49,12 +71,12 @@ export default {
                 return
             }
 
-            this.tasklist.unshift({'id':this.tasklist.length ,'taskname':this.newtask,'category':this.category,'duedate':this.duedate,'isdone':false})
+            this.taskList.unshift({'id':this.taskList.length ,'name':this.newtask,'category':this.selected,'duedate':this.dateValue,'isdone':false})
             this.newtask=''
-            this.duedate=''
+            this.dateValue=''
         },
         removetask(index){
-            this.tasklist.splice(index,1)
+            this.taskList.splice(index,1)
         },
         getColor(catname){
             if(!catname){

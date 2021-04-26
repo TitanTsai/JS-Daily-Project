@@ -32,7 +32,10 @@
 
 <script>
 export default {
-    props: ['modelValue'],
+    props: {
+            modelValue:{type:String,
+                        default: new Date()}
+                        },
     emits: ['update:modelValue'],
     data(){
         return{
@@ -44,7 +47,8 @@ export default {
         }
     },
     created(){
-        setTimeout(this.renderCalender(),1000)
+        setTimeout(this.renderCalender(),1000);
+        this.dateValue = new Date().toLocaleDateString();
     },
     methods:{
         renderCalender(){

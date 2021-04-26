@@ -13,8 +13,8 @@
 
 //import SimpleCalculator from '@/components/SimpleCalculator'
 //import SimpleCarousel from '@/components/SimpleCarousel'
-import TaskList from '@/components/TaskList'
-//import DatePicker from '@/components/DatePicker'
+import TaskList from '@/components/TaskList_old'
+
 export default {
   components:{
     //SimpleCalculator,
