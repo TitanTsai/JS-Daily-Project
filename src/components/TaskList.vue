@@ -6,9 +6,10 @@
                 <div class="task-add-btn" @click="addTask()">+</div>
             </div>
             <div class="task-options">
-                <!--<div class="task-category">
-                    <p class="taskOption-label">Category:</p>
-                </div>-->
+                <div class="task-catagory">
+                    <p class="taskOption-label">Color</p>
+                    <ColorPicker></ColorPicker>
+                </div>
                 <div class="task-duedate">
                     <p class="taskOption-label">Due Date</p>
                     <DateInput v-model:modelValue="dateValue"></DateInput>
@@ -35,10 +36,14 @@
 
 <script>
 import DateInput from '@/components/DatePicker'
+import ColorPicker from '@/components/ColorPicker'
 import EventService from '@/services/EventService.js'
 
 export default {
-    components:{DateInput},
+    components:{
+        DateInput,
+        ColorPicker
+        },
     data(){
         return{
             taskName:'',
@@ -76,8 +81,17 @@ export default {
 
             let catcolor= this.types.find(type => type.typename===catname).color;
             return `${catcolor}`;
-        }           
+        },
+        isToday(){
+            const today=new Date().toLocaleDateString();
+            if(this.task.duedate === today){
+                return `today`
+            }else return this.task.duedate
+        }    
     },
+    computed:{
+        
+    }
 }
 </script>
 
@@ -89,7 +103,6 @@ export default {
 
     .task-header{
         width:480px;
-        height: 240px;
         background-color:var(--highlight);
         border-radius: 1em;
         padding:2em;
@@ -112,7 +125,6 @@ export default {
         border-bottom:1px solid var(--upper);
         padding-bottom:0.25em;
         -webkit-appearance: none;
-        margin-bottom: 1em;
         width:340px;
     }
 
@@ -135,6 +147,10 @@ export default {
     .task-catagory, .task-duedate{
         display: block;
         text-align: left;
+    }
+
+    .task-options{
+        margin-top:1em;
     }
 
     .taskOption-label{
@@ -187,7 +203,7 @@ export default {
         border-color:var(--contrast);
         border-radius:6px;
         cursor:pointer;
-        margin:auto 0.5em;
+        margin-right:0.5em;
     }
 
     input[type="checkbox"]:checked + label span{
