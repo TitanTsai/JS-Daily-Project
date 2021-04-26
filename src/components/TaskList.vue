@@ -13,7 +13,6 @@
                     <p class="taskOption-label">Due Date</p>
                     <DateInput v-model:modelValue="dateValue"></DateInput>
                 </div>
-                <p>{{dateValue}}</p>
             </div>
         </div>
         <div class="task-list">
@@ -46,6 +45,7 @@ export default {
             taskList:null,
             taskIndex:0,
             dateValue:'',
+            types:[{'typename':'business','color':'#524EEE'},{'typename':'personal','color':'#6FCF97'}]
         }
     },
     created(){
@@ -68,7 +68,15 @@ export default {
         },
         removeTask(index){
             this.taskList.splice(index,1)
-        }
+        },
+        getColor(catname){
+            if(!catname){
+                return
+            }
+
+            let catcolor= this.types.find(type => type.typename===catname).color;
+            return `${catcolor}`;
+        }           
     },
 }
 </script>
@@ -163,6 +171,27 @@ export default {
     .task-item-right{
         display:inline-flex;
         align-self: center;
+    }
+
+
+    input[type="checkbox"]{
+        display:none;
+    }
+
+    input[type="checkbox"] + label span {
+        display: inline-flex;
+        box-sizing: border-box;
+        width:21px;
+        height:21px;
+        border:3px solid;
+        border-color:var(--contrast);
+        border-radius:6px;
+        cursor:pointer;
+        margin:auto 0.5em;
+    }
+
+    input[type="checkbox"]:checked + label span{
+        background:url("../assets/images/check.svg") 1px 2px no-repeat, #42416C;
     }
 
     .remove{

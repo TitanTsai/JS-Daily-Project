@@ -1,13 +1,13 @@
 <template>
     <div>
-        <input class="dp-input" type="text" v-model="dateValue">
+        <input class="dp-input" type="text" :model-value="dateValue" @update:model-value="dateValue = $event">
     </div>
     
 </template>
 
 <script>
 export default {
-    props:['modelValue'],
+    props:['model-value'],
     data(){
         return{
             dateValue:'',

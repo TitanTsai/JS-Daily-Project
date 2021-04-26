@@ -1,9 +1,9 @@
 <template>
     <div>
-        <input class="dp-input" type="text" v-model="dateValue">
+        <input class="dp-input" type="text" v-model="dateValue" @click="openModal=!ope">
         <div class="dp-container" v-show="openModal">
             <div class="dp-instant-container">
-                <div class="dp-instant-button" @click="setInstant()">Today</div>
+                <div class="dp-instant-button" @click="setToday()">Today</div>
                 <div class="dp-instant-button">Tomorrow</div>
                 <div class="dp-instant-button">In 2 Days</div>
             </div>
@@ -40,7 +40,7 @@ export default {
             calender: [],
             prevWeekDays:[],
             isActive:false,
-            openModal:true,
+            openModal:false,
         }
     },
     created(){
@@ -72,8 +72,19 @@ export default {
             this.calender[index].isActive = true;
             this.dateValue= new Date(this.current.setDate(index+1)).toLocaleDateString();
         },
-        setInstant(){
-            this.dateValue = new Date();
+        setToday(){
+            this.dateValue = new Date().toLocaleDateString();
+        },
+        
+    },
+    computed: {
+        dateValue: {
+        get() {
+            return this.modelValue
+        },
+        set(value) {
+            this.$emit('update:modelValue', value)
+        }
         }
     }
     }
