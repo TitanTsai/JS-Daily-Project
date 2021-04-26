@@ -2,16 +2,16 @@
     <div class="task-container">
         <div class="task-header">
             <div class="task-input">
-                <input v-model="taskName" placeholder="Write Somthing" @keypress.enter="addTask()">
+                <input v-model="taskName" placeholder="Write Something" @keypress.enter="addTask()">
                 <div class="task-add-btn" @click="addTask()">+</div>
             </div>
             <div class="task-options">
                 <div class="task-catagory">
-                    <p class="taskOption-label">Color</p>
+                    <p class="taskOption-label">Category:</p>
                     <ColorPicker></ColorPicker>
                 </div>
                 <div class="task-duedate">
-                    <p class="taskOption-label">Due Date</p>
+                    <p class="taskOption-label">Due Date:</p>
                     <DateInput v-model:modelValue="dateValue"></DateInput>
                 </div>
             </div>
@@ -50,7 +50,7 @@ export default {
             taskList:null,
             taskIndex:0,
             dateValue:'',
-            types:[{'typename':'business','color':'#524EEE'},{'typename':'personal','color':'#6FCF97'}]
+            types:[{'typeName':'business','color':'#524EEE'},{'typeName':'personal','color':'#6FCF97'}]
         }
     },
     created(){
@@ -79,15 +79,9 @@ export default {
                 return
             }
 
-            let catcolor= this.types.find(type => type.typename===catname).color;
+            let catcolor= this.types.find(type => type.typeName===catname).color;
             return `${catcolor}`;
-        },
-        isToday(){
-            const today=new Date().toLocaleDateString();
-            if(this.task.duedate === today){
-                return `today`
-            }else return this.task.duedate
-        }    
+        }
     },
     computed:{
         
@@ -103,6 +97,7 @@ export default {
 
     .task-header{
         width:480px;
+        height:275px;
         background-color:var(--highlight);
         border-radius: 1em;
         padding:2em;
@@ -117,7 +112,7 @@ export default {
     }
 
     .task-input input{
-        font-weight: 500;
+        font-weight: 300;
         font-size:2em;
         background-color:transparent;
         color:var(--truewhite);
@@ -138,6 +133,7 @@ export default {
         align-items: center;
         color:var(--truewhite);
         font-size: 2em;
+        cursor:pointer;
     }
 
     .task-add-btn:hover{
@@ -181,7 +177,7 @@ export default {
         font-weight:300;
         font-size:1.5em;
         color:var(--white);
-        padding-left:0.5em;
+        margin:auto 0;
     }
 
     .task-item-right{

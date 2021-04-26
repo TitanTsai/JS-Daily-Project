@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input class="dp-input" type="text" v-model="dateValue" @click="openModal=!ope">
+        <input class="dp-input" type="text" v-model="dateValue" @click="openModal=!openModal" readonly>
         <div class="dp-container" v-show="openModal">
             <div class="dp-instant-container">
                 <div class="dp-instant-button" @click="setToday()">Today</div>
@@ -98,8 +98,9 @@ export default {
         color:var(--caption);
         border:none;
         border-radius: 4px;
-        background-color: var(--upper);
         padding:10px;
+        background: url('../assets/images/calender.svg') no-repeat 310px 10px var(--upper);
+        cursor: pointer;
     }
     .dp-container{
         margin-top:0.5em;
@@ -116,8 +117,8 @@ export default {
     }
 
     .dp-instant-container{
-        display:inline-flex;
-        justify-content: start;
+        display:flex;
+        justify-content: flex-start;
     }
 
     .dp-instant-button{

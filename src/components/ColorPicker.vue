@@ -1,17 +1,27 @@
 <template>
-    <div class="cp-container" id="cp-input">
-        <div v-for="cat in category" :key="cat.catName" :style="{backgroundColor:`${cat.catColor}`}" class="cp-btn"></div>
+    <div v-for="(type,index) in types" :key="index" class="cp-container">
+        <input type="radio"  :id="type.typeName"  :value="type.typeName" name="catSelect" v-model="selected"/>
+        <label class="cp-label" :for="type.typeName">{{type.typeName}}</label>
     </div>
+    {{selected}}
 </template>
 
 <script>
 export default {
+    props:['modelValue'],
     data(){
-        return{
-            category:[
-                {"catName":"Business","catColor":"#6FCF97"},
-                {"catName":"Personal","catColor":"#524EEE"},
-                ]
+        return{ 
+            types:[
+                {"typeName":"Business","color":"#6FCF97"},
+                {"typeName":"Personal","color":"#524EEE"},
+                {"typeName":"Important","color":"#D06969"},
+                ],
+            selected:'',
+        }
+    },
+    methods:{
+        setCat(){
+            
         }
     }
 }
@@ -19,22 +29,40 @@ export default {
 
 <style>
     .cp-container{
-        display:flex;
+        display:inline-flex;
         margin-bottom:1em;
+        overflow: auto;
     }
 
     .cp-btn{
         display: block;
         font-size:1em;
         background-color:var(--upper);
-        color:var(--white);
+        color:var(--truewhite);
         margin-right:12px;
-        border-radius: 12px;
-        width:24px;
-        height: 24px;
-        /*--font-weight:500;
-        padding:2px 8px;--*/
+        border-radius: 4px;
+        font-weight:500;
+        padding:2px 8px;
         cursor:pointer;
     }
     
+    .cp-label{
+        padding:2px 8px;
+        background-color:var(--upper);
+        color:var(--truewhite);
+        margin:0;
+        border-radius: 4px;
+        margin-right:8px;
+    }
+    
+    .colorSpan{
+        display: block;
+        width:16px;
+        height:16px;
+        border:2px solid ;
+    }
+
+    input[type="radio"]{
+        -webkit-appearance: none;
+    }
 </style>
