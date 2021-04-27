@@ -22,13 +22,13 @@
         <div class="task-list">
             <div class="task-item" v-for="task in taskList" :key="task.id">
                 <div class="task-item-left">
-                    <input type="checkbox" v-model="task.isDone" :id="task.id">
+                    <input type="checkbox" v-model="task.isDone" :id="task.id" @click="markDone(task)">
                     <label :for="task.id" class="task-item-name" :class="{isDone:task.isDone}"><span :for="task.category" :style="{borderColor:`${indexColor(task.category)}`}"></span>{{task.name}}</label>
                 </div>
                 <div class="task-item-right">
                     
                     <div>{{task.duedate}}</div>
-                    <div class="remove" :class="{showRemove:task.isDone}" @click="removeTask(index)"><img src="../assets/images/remove.svg"></div>
+                    <div class="remove" :class="{showRemove:task.isDone}" @click="removeTask(task.id)"><img src="../assets/images/remove.svg"></div>
                 </div>
                
             </div>
@@ -40,7 +40,7 @@
 <script>
 import DateInput from '@/components/DatePicker'
 import ColorPicker from '@/components/ColorPicker'
-import EventService from '@/services/EventService.js'
+import axios from 'axios'
 
 export default {
     components:{
@@ -61,34 +61,58 @@ export default {
         }
     },
     created(){
-        EventService.getTasks()
-        .then(response=>{
-            this.taskList = response.data
-        })
-        .catch(error=>{
-            console.log(error)
-        })
+        this.getTask()
     },
     methods:{
         addTask(){
-
-            let timeStamp = Math.floor(Date.now()) 
-
             if(this.taskName.trim().length===0){
                 return
             }
 
-            this.taskList.unshift({'id':timeStamp ,'name':this.taskName,'category':this.selected,'duedate':this.dateValue,'isDone':false});
+            let timeStamp = Math.floor(Date.now()) 
+
+            
+            let item = {'id':timeStamp ,'name':this.taskName,'category':this.selected,'duedate':this.dateValue,'isDone':false}
+            
+            axios.post('http://localhost:3000/taskList' ,item)
+            .then((response)=>{this.taskList.push(response.data)})
+            .catch((error)=>{console.log(error)})
+            
             this.taskName=''
+
         },
+
+        getTask(){
+            axios.get('http://localhost:3000/taskList')
+            .then(response=>{
+                this.taskList = response.data
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        },
+
         removeTask(index){
-            this.taskList.splice(index,1)
+            axios.delete('http://localhost:3000/taskList/' + index)
+            .then(() => {this.taskList.splice(index,1)})
+            .catch((error)=>{console.log(error)});
+            
+            this.getTask()
+        },
+        markDone(index){
+
+            index.isDone = !index.isDone;
+            let patchId = index.id
+            axios.patch('http://localhost:3000/taskList/' + patchId)
+            .then(()=>{this.task.isDone=true})
+            .catch((error)=>{console.log(error)})
         },
         indexColor(index){
             if(!index){return '#4E2ECF'}
             let color = this.types.find( element=>element.typeName === index).color
             return color
-        }
+        },
+        
     },
     computed:{
         
@@ -176,6 +200,7 @@ export default {
         box-sizing: border-box;
         background-color: var(--highlight);
         width:480px;
+        height:75px;
         border-radius: 1em;
         padding:1.5em;
         justify-content: space-between;
@@ -185,7 +210,7 @@ export default {
 
     .task-item-name{
         font-weight:300;
-        font-size:1.5em;
+        font-size:1.2em;
         color:var(--white);
         margin:auto 0;
     }

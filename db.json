@@ -1,25 +1,53 @@
 {
-    "taskList": [
+  "taskList": [
     {
-        "id":0,
-        "name":"Create Todo App",
-        "category":"Business",
-        "duedate":"Yesterday",
-        "isDone":true
+      "id": 1619499068188,
+      "name": "add category support",
+      "category": "Business",
+      "duedate": "2021/4/28",
+      "isDone": false
     },
     {
-        "id":1,
-        "name":"add color support",
-        "category":"Business",
-        "duedate":"Today",
-        "isDone":false
+      "id": 1619501033550,
+      "name": "datepicker component",
+      "category": "Business",
+      "duedate": "2021/4/21",
+      "isDone": false
+    },
+    {
+      "id": 1619501130678,
+      "name": "isDone patch",
+      "category": "Important",
+      "duedate": "2021/4/21",
+      "isDone": false
+    },
+    {
+      "id": 1619501155741,
+      "name": "date and category filter",
+      "category": "Business",
+      "duedate": "2021/4/28",
+      "isDone": false
+    },
+    {
+      "id": 1619514683113,
+      "name": "patch json method",
+      "category": "",
+      "duedate": "2021/4/27",
+      "isDone": false
     }
-    ],
-    
-    "types":[
-        {"typename":"Default","color":"#4E2ECF"},
-        {"typename":"Business","color":"#6FCF97"},
-        {"typename":"Personal","color":"#524EEE"},
-        {"typename":"Important","color":"#D06969"}
-    ]
+  ],
+  "types": [
+    {
+      "typename": "Business",
+      "color": "#6FCF97"
+    },
+    {
+      "typename": "Personal",
+      "color": "#524EEE"
+    },
+    {
+      "typename": "Important",
+      "color": "#D06969"
+    }
+  ]
 }
