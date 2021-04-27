@@ -17,6 +17,7 @@
     ],
     
     "types":[
+        {"typename":"Default","color":"#4E2ECF"},
         {"typename":"Business","color":"#6FCF97"},
         {"typename":"Personal","color":"#524EEE"},
         {"typename":"Important","color":"#D06969"}

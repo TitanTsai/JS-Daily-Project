@@ -7,14 +7,14 @@
             </div>
             <div class="task-options">
                 <div class="task-catagory">
-                    <p class="taskOption-label">Category:</p>
-                    <ColorPicker v-model:modelValue="selected"></ColorPicker>
+                    <!--<p class="taskOption-label">Category:</p>-->
+                    <ColorPicker v-model:radioValue="selected"></ColorPicker>
                 </div>
 
-                {{selected}}
+                
                 <div class="task-duedate">
-                    <p class="taskOption-label">Due Date:</p>
-                    <DateInput v-model:modelValue="dateValue"></DateInput>
+                    <!--<p class="taskOption-label">Due Date:</p>-->
+                    <DateInput  v-model:modelValue="dateValue"></DateInput>
                 </div>
             </div>
         </div>
@@ -23,9 +23,10 @@
             <div class="task-item" v-for="task in taskList" :key="task.id">
                 <div class="task-item-left">
                     <input type="checkbox" v-model="task.isDone" :id="task.id">
-                    <label :for="task.id" class="task-item-name" :class="{isdone:task.isdone}"><span :for="task.category"></span>{{task.name}}</label>
+                    <label :for="task.id" class="task-item-name" :class="{isDone:task.isDone}"><span :for="task.category" :style="{borderColor:`${indexColor(task.category)}`}"></span>{{task.name}}</label>
                 </div>
                 <div class="task-item-right">
+                    
                     <div>{{task.duedate}}</div>
                     <div class="remove" :class="{showRemove:task.isDone}" @click="removeTask(index)"><img src="../assets/images/remove.svg"></div>
                 </div>
@@ -70,17 +71,24 @@ export default {
     },
     methods:{
         addTask(){
+
+            let timeStamp = Math.floor(Date.now()) 
+
             if(this.taskName.trim().length===0){
                 return
             }
 
-            this.taskList.unshift({'id':this.taskList.length ,'name':this.taskName,'category':this.selected,'duedate':this.dateValue,'isDone':false});
+            this.taskList.unshift({'id':timeStamp ,'name':this.taskName,'category':this.selected,'duedate':this.dateValue,'isDone':false});
             this.taskName=''
         },
         removeTask(index){
             this.taskList.splice(index,1)
         },
-        
+        indexColor(index){
+            if(!index){return '#4E2ECF'}
+            let color = this.types.find( element=>element.typeName === index).color
+            return color
+        }
     },
     computed:{
         
@@ -96,7 +104,7 @@ export default {
 
     .task-header{
         width:480px;
-        height:275px;
+        height:235px;
         background-color:var(--highlight);
         border-radius: 1em;
         padding:2em;
@@ -108,6 +116,7 @@ export default {
         display:flex;
         width:100%;
         justify-content: space-between;
+        margin-bottom:2em;
     }
 
     .task-input input{
@@ -133,6 +142,7 @@ export default {
         color:var(--truewhite);
         font-size: 2em;
         cursor:pointer;
+        box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
     }
 
     .task-add-btn:hover{
@@ -142,6 +152,7 @@ export default {
     .task-catagory, .task-duedate{
         display: block;
         text-align: left;
+        margin-bottom: 1em;
     }
 
     .task-options{
@@ -166,7 +177,7 @@ export default {
         background-color: var(--highlight);
         width:480px;
         border-radius: 1em;
-        padding:1em;
+        padding:1.5em;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 1em;
@@ -207,6 +218,7 @@ export default {
 
     .remove{
         display: none;
+        margin-left:1em;
     }
 
     .showRemove{

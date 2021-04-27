@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Components</h1>
+    <h1>Simple Task List</h1>
     <!--<SimpleCarousel></SimpleCarousel>-->
     
     <div class="container">
@@ -29,6 +29,6 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin:5em 0;
+    margin:1em 0;
   }
 </style>

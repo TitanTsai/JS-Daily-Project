@@ -1,17 +1,17 @@
 <template>
-    <div v-for="(type,index) in types" :key="index" class="cp-container">
-        <input type="radio"  :id="type.typeName"  :value="type.typename" name="catSelect" v-model="selected"/>
-        <label class="cp-label" :for="type.typename">{{type.typename}}</label>
+    <select class="cp-container" v-model="selected">
+        <option value="" disabled>Category</option>
+        <option v-for="type in types" :key="type.typename" :value="type.typename">{{type.typename}}</option>
+    </select>
 
-    </div>
 
 </template>
 
 <script>
 import EventService from '@/services/EventService.js'
 export default {
-    props:{
-        modelValue:String,
+    props: {
+        radioValue:{type:String}
     },
     created(){
         EventService.getCategory()
@@ -34,10 +34,10 @@ export default {
     computed: {
         selected: {
         get() {
-            return this.modelValue
+            return this.radioValue
         },
         set(value) {
-            this.$emit('update:modelValue', value)
+            this.$emit('update:radioValue', value)
         }
         }
     }
@@ -46,41 +46,16 @@ export default {
 
 <style>
     .cp-container{
-        display:inline-flex;
-        margin-bottom:1em;
-        overflow: auto;
-    }
-
-    .cp-btn{
-        display: block;
-        font-size:1em;
-        background-color:var(--upper);
-        color:var(--truewhite);
-        margin-right:12px;
-        border-radius: 4px;
-        font-weight:500;
-        padding:2px 8px;
-        cursor:pointer;
-    }
-    
-    .cp-label{
-        padding:2px 8px;
-        background-color:var(--upper);
-        color:var(--truewhite);
-        margin:0;
-        border-radius: 4px;
-        margin-right:8px;
-    }
-    
-    .colorSpan{
-        display: block;
-        width:16px;
-        height:16px;
-        border:2px solid ;
-    }
-
-    input[type="radio"]{
+        display:flex;
+        width:340px;
+        border:none;
         -webkit-appearance: none;
+        font-size:1em;
+        padding:10px;
+        color:var(--caption);
+        border-radius: 4px;
+        background:url('../assets/images/category.svg') no-repeat 310px 10px var(--upper);
+        margin-bottom:0.5em;
     }
 
     .selected{

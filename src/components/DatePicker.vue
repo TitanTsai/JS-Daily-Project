@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input class="dp-input" type="text" v-model="dateValue" @click="openModal=!openModal" readonly>
+        <input class="dp-input" type="text" v-model="dateValue" @click="openModal=!openModal" placeholder="Due Date" readonly>
         <div class="dp-container" v-show="openModal">
             <div class="dp-instant-container">
                 <div class="dp-instant-button" @click="setToday()">Today</div>
