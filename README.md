@@ -17,6 +17,12 @@ Day 6. DatePicker wireframe
 Day 7. DatePicker function 
 
 Day 8. Implement datepicker with tasklist, tasklist rewrite
+
+Day 9. Category picker component
+
+Day 10.Category picker component and color support fix
+
+Day 11.
 # vue-daily
 
 ## Project setup

@@ -99,13 +99,15 @@ export default {
             
             this.getTask()
         },
-        markDone(index){
-
-            index.isDone = !index.isDone;
-            let patchId = index.id
-            axios.patch('http://localhost:3000/taskList/' + patchId)
-            .then(()=>{this.task.isDone=true})
-            .catch((error)=>{console.log(error)})
+        markDone(item){
+            if(item.isDone === false){
+                axios.patch('http://localhost:3000/taskList/' + item.id, {isDone: true})
+                .then(()=> {})
+                .catch((error)=>{console.log(error)});
+            }else{
+            axios.patch('http://localhost:3000/taskList/' + item.id, {isDone: false})
+            .then(()=> {})
+            .catch((error)=>{console.log(error)});}
         },
         indexColor(index){
             if(!index){return '#4E2ECF'}
