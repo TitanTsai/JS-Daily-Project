@@ -22,7 +22,7 @@ Day 9. Category picker component
 
 Day 10.Category picker component and color support fix
 
-Day 11.
+Day 11.Tasks filter and sidebar added
 # vue-daily
 
 ## Project setup
