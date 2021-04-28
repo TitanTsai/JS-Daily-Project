@@ -4,8 +4,8 @@
         <div class="dp-container" v-show="openModal">
             <div class="dp-instant-container">
                 <div class="dp-instant-button" @click="setToday()">Today</div>
-                <div class="dp-instant-button">Tomorrow</div>
-                <div class="dp-instant-button">In 2 Days</div>
+                <!--<div class="dp-instant-button" >Tomorrow</div>-->
+                <!-- <div class="dp-instant-button">In 2 Days</div> -->
             </div>
             <div class="dp-month-header">
                 <div class="dp-change-month" @click="changeMonth(-1)">&#10094;</div>
