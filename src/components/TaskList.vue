@@ -1,5 +1,6 @@
 <template>
     <div class="task-list">
+            
             <div class="task-item" v-for="task in taskList" :key="task.id">
                 <div class="task-item-left">
                     <input type="checkbox" v-model="task.isDone" :id="task.id" @click="markDone(task)">

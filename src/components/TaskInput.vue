@@ -28,20 +28,28 @@ export default {
         DateInput,
         ColorPicker
     },
+    created(){
+        this.getTask()
+    },
     data(){
         return{
             taskName:'',
             taskList:null,
-            taskIndex:0,
             dateValue:'',
             selected:'',
-            types:
-                [{'typeName':'Business','color':'#6FCF97'},
-                {'typeName':'Personal','color':'#524EEE'},
-                {'typeName':'Important','color':'#D06969'}]
+            
         }
     },
     methods:{
+        getTask(){
+            axios.get('http://localhost:3000/taskList')
+            .then(response=>{
+                this.taskList = response.data
+            })
+            .catch(error=>{
+                console.log(error)
+            })
+        },
         addTask(){
             if(this.taskName.trim().length===0){
                 return
@@ -57,7 +65,6 @@ export default {
             .catch((error)=>{console.log(error)})
             
             this.taskName=''
-
         },
     }
 }
