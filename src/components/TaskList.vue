@@ -1,17 +1,16 @@
 <template>
     <div class="task-list">
-            
-            <div class="task-item" v-for="task in taskList" :key="task.id">
-                <div class="task-item-left">
-                    <input type="checkbox" v-model="task.isDone" :id="task.id" @click="markDone(task)">
-                    <label :for="task.id" class="task-item-name" :class="{isDone:task.isDone}"><span :for="task.category" :style="{borderColor:`${indexColor(task.category)}`}"></span>{{task.name}}</label>
-                </div>
-                <div class="task-item-right">
-                    <div>{{task.duedate}}</div>
-                    <div class="remove" :class="{showRemove:task.isDone}" @click="removeTask(task.id)"><img src="../assets/images/remove.svg"></div>
-                </div>
-               
+        <div class="task-item" v-for="task in filterList" :key="task.id">
+            <div class="task-item-left">
+                <input type="checkbox" v-model="task.isDone" :id="task.id" @click="markDone(task)">
+                <label :for="task.id" class="task-item-name" :class="{isDone:task.isDone}"><span :for="task.category" :style="{borderColor:`${indexColor(task.category)}`}"></span>{{task.name}}</label>
             </div>
+            <div class="task-item-right">
+                <div>{{task.duedate}}</div>
+                <div class="remove" :class="{showRemove:task.isDone}" @click="removeTask(task.id)"><img src="../assets/images/remove.svg"></div>
+            </div>
+            
+        </div>
     </div>        
 </template>
 
@@ -20,11 +19,13 @@ import axios from 'axios'
 export default {
     data(){
         return{
-            taskList:null,
+            taskList: [],
+            filterList:[],
             types:
                 [{'typeName':'Business','color':'#6FCF97'},
                 {'typeName':'Personal','color':'#524EEE'},
-                {'typeName':'Important','color':'#D06969'}]
+                {'typeName':'Important','color':'#D06969'}],
+            isFiltered: false
         }
     },
     created(){
@@ -32,12 +33,14 @@ export default {
     },
     methods:{
         getTask(){
-            axios.get('http://localhost:3000/taskList')
+            axios.get('http://localhost:3000/taskList/')
             .then(response=>{
-                this.taskList = response.data
+
+                this.taskList = response.data;
+                this.filterList = this.taskList;
             })
-            .catch(error=>{
-                console.log(error)
+            .catch(()=>{
+                alert('This App requires JSON Server Running')
             })
         },
 
@@ -64,6 +67,15 @@ export default {
             if(!index){return '#4E2ECF'}
             let color = this.types.find( element=>element.typeName === index).color
             return color
+        },
+        
+        filterCat(value){
+            this.filterList = this.taskList;
+            let filterArray=[];
+            if(!value){filterArray = this.filterList}
+            else{
+            filterArray = this.filterList.filter(item=>{return item.category.includes(value)})}
+            this.filterList = filterArray;
         }
         
     },

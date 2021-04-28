@@ -1,7 +1,9 @@
 <template>
+    <div>
+        <SideBar/>
+    </div>
     <div class="task-container">
-       <TaskInput />
-    
+        <TaskInput />
         <TaskList />
     </div>
     
@@ -10,12 +12,13 @@
 <script>
 import TaskInput from '@/components/TaskInput'
 import TaskList from '@/components/TaskList'
-
+import SideBar from '@/components/SideBar'
 export default {
     components:{
-       TaskInput,
-       TaskList
-        }
+        SideBar,
+        TaskInput,
+        TaskList
+    }
 }
 </script>
 

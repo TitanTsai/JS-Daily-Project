@@ -1,13 +1,6 @@
 {
   "taskList": [
     {
-      "id": 1619515800809,
-      "name": "tasklist wireframe",
-      "category": "Important",
-      "duedate": "2021/4/20",
-      "isDone": true
-    },
-    {
       "id": 1619515819401,
       "name": "datepicker component",
       "category": "Important",
@@ -43,31 +36,38 @@
       "isDone": false
     },
     {
-      "id": 1619583192813,
-      "name": "test",
-      "category": "",
+      "id": 1619596717708,
+      "name": "helloworld",
+      "category": "Business",
       "duedate": "2021/4/28",
       "isDone": false
     },
     {
-      "id": 1619585030336,
-      "name": "hello world",
-      "category": "",
+      "id": 1619597850157,
+      "name": "qwerknkadf",
+      "category": "Important",
+      "duedate": "2021/4/28",
+      "isDone": false
+    },
+    {
+      "id": 1619608437578,
+      "name": "do something",
+      "category": "Personal",
       "duedate": "2021/4/28",
       "isDone": false
     }
   ],
   "types": [
     {
-      "typename": "Business",
+      "typeName": "Business",
       "color": "#6FCF97"
     },
     {
-      "typename": "Personal",
+      "typeName": "Personal",
       "color": "#524EEE"
     },
     {
-      "typename": "Important",
+      "typeName": "Important",
       "color": "#D06969"
     }
   ]

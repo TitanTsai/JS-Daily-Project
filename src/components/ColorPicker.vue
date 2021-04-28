@@ -1,7 +1,7 @@
 <template>
     <select class="cp-container" v-model="selected">
         <option value="" disabled>Category</option>
-        <option v-for="type in types" :key="type.typename" :value="type.typename">{{type.typename}}</option>
+        <option v-for="type in types" :key="type.typeName" :value="type.typeName">{{type.typeName}}</option>
     </select>
 
 
