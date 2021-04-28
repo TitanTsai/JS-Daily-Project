@@ -2,8 +2,9 @@
     <div class="sidebar">
         <ul class="sb_catlist">
             <li class="sb_main">Overview</li>
-            <li class="sb_span">Category</li>
+            <li class="sb_span"><img src="../assets/images/sort.svg"> Category</li>
             <li class="sb_catlink" v-for="type in types" :key="type.typename"  @click="filterHandler"><span class="sb_colortag" :style="{backgroundColor:`${type.color}`}"></span>{{type.typeName}}</li>
+            <li class="sb_addCat">+ add category</li>
         </ul>
     </div>
 </template>
@@ -55,7 +56,7 @@ export default {
         font-weight:500
     }
 
-    .sb_main, .sb_catlink{
+    .sb_main, .sb_catlink, .sb_addCat{
         margin:0.5em 0;
         display: flex;
         align-items: center;
@@ -64,6 +65,19 @@ export default {
         padding:12px;
         border-radius: 8px;
         cursor:pointer;
+    }
+
+    .sb_addCat{
+        color:var(--disabled)
+    }
+
+    .sb_addCat:hover{
+        color:var(--white);
+        background-color:var(--bright)
+    }
+
+    .sb_catlink{
+        font-weight:300;
     }
 
     .sb_catlink:hover{
@@ -77,8 +91,8 @@ export default {
 
     .sb_span{
         color:var(--disabled);
-        font-size:16px;
-        padding:12px;
+        font-size:18px;
+        padding:8px;
         
     }
 

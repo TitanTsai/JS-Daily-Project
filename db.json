@@ -26,33 +26,12 @@
       "name": "add task filter",
       "category": "Business",
       "duedate": "2021/4/26",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": 1619582857398,
       "name": "router link filter",
       "category": "Business",
-      "duedate": "2021/4/28",
-      "isDone": false
-    },
-    {
-      "id": 1619596717708,
-      "name": "helloworld",
-      "category": "Business",
-      "duedate": "2021/4/28",
-      "isDone": false
-    },
-    {
-      "id": 1619597850157,
-      "name": "qwerknkadf",
-      "category": "Important",
-      "duedate": "2021/4/28",
-      "isDone": false
-    },
-    {
-      "id": 1619608437578,
-      "name": "do something",
-      "category": "Personal",
       "duedate": "2021/4/28",
       "isDone": false
     }
