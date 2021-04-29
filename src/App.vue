@@ -6,6 +6,8 @@
 </template>
 
 <style>
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css');
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -53,29 +55,6 @@ body{
     -ms-user-select: none;
     -moz-user-select: none;
 }
-
-
-*{
-    box-sizing: border-box;
-}
-
-.wrapper{
-    width:100%;
-    margin-right:auto;
-    margin-left:auto;
-}
-
-@media screen and (max-width:768px){
-    .wrapper{
-        max-width:720px;
-    }
-}
-
-.row{
-    display: flex;
-    flex-wrap: wrap;
-}
-
 
 
 </style>

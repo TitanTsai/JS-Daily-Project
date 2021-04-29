@@ -47,8 +47,8 @@ export default {
 <style>
     .cp-container{
         display:flex;
-        width:340px;
         border:none;
+        width:340px;
         -webkit-appearance: none;
         font-size:1em;
         padding:10px;
@@ -60,5 +60,13 @@ export default {
 
     .selected{
         background-color:var(--catcolor)
+    }
+
+    @media screen and (max-width:768px) {
+        .cp-container{
+            font-size:1em;
+            width:240px;
+            background:url('../assets/images/category.svg') no-repeat 210px 10px var(--upper);
+        }
     }
 </style>

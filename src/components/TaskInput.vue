@@ -76,6 +76,7 @@ export default {
         background-color:var(--highlight);
         border-radius: 1em;
         padding:2em;
+        height:240px;
         box-sizing: border-box;
         margin-bottom:1em;
     }
@@ -84,7 +85,7 @@ export default {
         display:flex;
         width:100%;
         justify-content: space-between;
-        margin-bottom:2em;
+        margin-bottom:1em;
     }
 
     .task-input input{
@@ -94,9 +95,9 @@ export default {
         color:var(--truewhite);
         border:none;
         border-bottom:1px solid var(--upper);
-        padding-bottom:0.25em;
+        padding-bottom:4px;
         -webkit-appearance: none;
-        width:340px;
+        width:75%;
     }
 
     .task-add-btn{
@@ -133,5 +134,15 @@ export default {
         color:var(--caption);
         font-size:1em;
         margin-bottom: 0.5em;
+    }
+
+    @media screen and (max-width:768px){
+        .task-header{
+            padding:1.5em;
+        }
+        .task-input input{
+            font-size:1.5em;
+            padding-bottom:6px;
+        }
     }
 </style>

@@ -1,11 +1,10 @@
 <template>
-    <div class="wrapper">
+    <div class="container">
         <div>
             <SideBar @filterSelected="applyFilter"/>
         </div>
         <div class="row">
-            <div class="task-container">
-                
+            <div class="col-12 col-md-8 col-lg-4 task-container">
                 <TaskInput />
                 <TaskList :filterValue="filterName" />
             </div>

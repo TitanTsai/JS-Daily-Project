@@ -224,4 +224,12 @@ export default {
         font-weight:500;
         cursor: pointer;
     }
+
+    @media screen and (max-width:768px) {
+        .dp-input{
+            width:240px;
+            font-size:1em;
+            background: url('../assets/images/calender.svg') no-repeat 210px 10px var(--upper);
+        }
+    }
 </style>

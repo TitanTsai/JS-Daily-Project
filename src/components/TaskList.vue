@@ -3,10 +3,10 @@
         <div class="task-item" v-for="task in filterList" :key="task.id">
             <div class="task-item-left">
                 <input type="checkbox" v-model="task.isDone" :id="task.id" @click="markDone(task)">
-                <label :for="task.id" class="task-item-name" :class="{isDone:task.isDone}"><span :for="task.category" :style="{borderColor:`${indexColor(task.category)}`}"></span>{{task.name}}</label>
+                <label :for="task.id" class="task-item-name text-wrap" :class="{isDone:task.isDone}"><span :for="task.category" :style="{borderColor:`${indexColor(task.category)}`}"></span>{{task.name}}</label>
             </div>
             <div class="task-item-right">
-                <div>{{task.duedate}}</div>
+                <!-- <div>{{task.duedate}}</div> -->
                 <div class="remove" :class="{showRemove:task.isDone}" @click="removeTask(task.id)"><img src="../assets/images/remove.svg"></div>
             </div>
            
@@ -155,5 +155,16 @@ export default {
     .isDone{
         text-decoration: line-through;
         color:var(--disabled)
+    }
+
+    @media screen and (max-width:768px){
+        .task-item{
+            padding:1em;
+        }
+
+        .task-item-name{
+            font-size:1em;
+            word-wrap:normal
+        }
     }
 </style>
