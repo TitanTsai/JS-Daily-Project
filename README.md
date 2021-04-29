@@ -1,28 +1,10 @@
-# About
-Playground for my daily JS practice. Plans to do a simple component everyday,
-what is done so far:
+# 關於
 
-Day 1. Simple Calculator
+製作簡易功能的TaskList，每日嘗試增加新功能。
 
-Day 2. Task List
+![image](https://github.com/TitanTsai/JS-Daily-Project/blob/d14309960cf74b49871fafca1fb5e6903f7c3e8c/%E6%88%AA%E5%9C%96%202021-04-29%20%E4%B8%8B%E5%8D%883.01.59.png)
 
-Day 3. Task List color support
 
-Day 4. Simple Carousel
-
-// Day 5. FileStructure to Vue CLI
-
-Day 6. DatePicker wireframe
-
-Day 7. DatePicker function 
-
-Day 8. Implement datepicker with tasklist, tasklist rewrite
-
-Day 9. Category picker component
-
-Day 10.Category picker component and color support fix
-
-Day 11.Tasks filter and sidebar added
 # vue-daily
 
 ## Project setup
