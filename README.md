@@ -44,6 +44,7 @@ Day 12.側選單元件化及RWD
   - 新增分類功能
 
 + 資料庫：
+  - transition
   - 新增Task後無法自動更新列表
   - 使用JSON格式，需配合json-server使用
 
