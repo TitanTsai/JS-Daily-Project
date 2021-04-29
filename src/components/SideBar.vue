@@ -1,9 +1,11 @@
 <template>
+    <div class="menu_toggle" @click="showMenu=!showMenu">Toggle</div>
     <div class="sidebar">
         <ul class="sb_catlist">
             <li class="sb_main">Overview</li>
             <li class="sb_span"><img src="../assets/images/sort.svg"> Category</li>
-            <li class="sb_catlink" v-for="type in types" :key="type.typename"  @click="filterHandler"><span class="sb_colortag" :style="{backgroundColor:`${type.color}`}"></span>{{type.typeName}}</li>
+            <li class="sb_catlink" v-for="type in types" :key="type.typename" @click="filterSelected(type.typeName)"><span class="sb_colortag" :style="{backgroundColor:`${type.color}`}"></span>{{type.typeName}}</li>
+            
             <li class="sb_addCat">+ add category</li>
         </ul>
     </div>
@@ -12,9 +14,10 @@
 <script>
 import axios from 'axios'
 export default {
+    emits: ['filterSelected'],
     data(){
         return{
-            types:[]
+            types:[],
         }
     },
     methods:{
@@ -27,6 +30,9 @@ export default {
                 alert(console.log(error))
             })
         },
+        filterSelected(value){
+            this.$emit('filterSelected',value)
+        }
     },
     created(){
         this.getTask()
@@ -38,9 +44,9 @@ export default {
     .sidebar{
         width:305px;
         position:fixed;
-        top:8em;
+        top:0;
         left:0;
-        z-index:1000;
+        z-index:1;
         min-height:100%;
         text-align: left;
         display: flex;
@@ -50,6 +56,7 @@ export default {
     .sb_catlist{
         list-style-type: none;
         width:80%;
+        margin-top:5em;
     }
 
     .sb_main{
@@ -103,4 +110,29 @@ export default {
         margin-right:12px;
     }
 
+    .menu_toggle{
+        display:none;
+    }
+
+    @media screen and (max-width:768px){
+        .menu_toggle{
+            display:block;
+            position:absolute;
+            top:0;
+            z-index:2;
+        }
+
+        .sidebar{
+            background-color:var(--background);
+            width:60%;
+            display: none;
+        }
+
+        .sidebarShow{
+            display:block;
+        }
+    }
+
+
+        
 </style>

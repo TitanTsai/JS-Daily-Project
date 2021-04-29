@@ -72,7 +72,6 @@ export default {
 
 <style>
     .task-header{
-        width:480px;
         height:235px;
         background-color:var(--highlight);
         border-radius: 1em;

@@ -1,8 +1,7 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/tasks">Tasks</router-link>
-  </div>
+  <!-- <div id="nav">
+    <router-link to="/">Tasks</router-link>
+  </div> -->
   <router-view/>
 </template>
 
@@ -54,6 +53,29 @@ body{
     -ms-user-select: none;
     -moz-user-select: none;
 }
+
+
+*{
+    box-sizing: border-box;
+}
+
+.wrapper{
+    width:100%;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+@media screen and (max-width:768px){
+    .wrapper{
+        max-width:720px;
+    }
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
 
 </style>

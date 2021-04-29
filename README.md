@@ -38,36 +38,9 @@ Day 12.側選單元件化及RWD
   - 自動載入今天日期無顯示綠色動態框。
 
 * 側選單：
-  - 尚未製作新增分類的功能
-  - 選單篩選按鈕在元件中無法使用
+  - 新增分類
 
 + 資料庫：
   - 新增Task後無法自動更新列表
   - 使用JSON格式，需配合json-server使用
-
-
-# vue-daily
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
 

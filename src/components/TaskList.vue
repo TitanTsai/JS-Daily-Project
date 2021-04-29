@@ -1,12 +1,4 @@
 <template>
-    <div class="sidebar">
-        <ul class="sb_catlist">
-            <li class="sb_main" @click="filterCat()">Overview</li>
-            <li class="sb_span"><img src="../assets/images/sort.svg"> Category</li>
-            <li class="sb_catlink" v-for="type in types" :key="type.typename"  @click="filterCat(type.typeName)"><span class="sb_colortag" :style="{backgroundColor:`${type.color}`}"></span>{{type.typeName}}</li>
-            <li class="sb_addCat">+ add category</li>
-        </ul>
-    </div>
     <div class="task-list">
         <div class="task-item" v-for="task in filterList" :key="task.id">
             <div class="task-item-left">
@@ -17,7 +9,7 @@
                 <div>{{task.duedate}}</div>
                 <div class="remove" :class="{showRemove:task.isDone}" @click="removeTask(task.id)"><img src="../assets/images/remove.svg"></div>
             </div>
-            
+           
         </div>
     </div>        
 </template>
@@ -25,10 +17,12 @@
 <script>
 import axios from 'axios'
 export default {
+    props:{filterValue:String},
     data(){
         return{
             taskList: [],
             filterList:[],
+            // filterValue:'',
             types:
                 [{'typeName':'Business','color':'#6FCF97'},
                 {'typeName':'Personal','color':'#524EEE'},
@@ -38,6 +32,14 @@ export default {
     },
     created(){
         this.getTask()
+    },
+    watch:{
+        filterValue:{
+            deep:true,
+            handler(newVal){
+                this.filterCat(newVal)
+            }
+        }
     },
     methods:{
         getTask(){
@@ -93,14 +95,13 @@ export default {
 <style scoped>
 
     .task-list{
-        width:480px
+        width:100%;
     }
 
     .task-item{
         display: flex;
         box-sizing: border-box;
         background-color: var(--highlight);
-        width:480px;
         height:75px;
         border-radius: 1em;
         padding:1.5em;
@@ -155,74 +156,4 @@ export default {
         text-decoration: line-through;
         color:var(--disabled)
     }
-
-    .sidebar{
-        width:305px;
-        position:fixed;
-        top:8em;
-        left:0;
-        z-index:1000;
-        min-height:100%;
-        text-align: left;
-        display: flex;
-        justify-content: flex-start;
-    }
-
-    .sb_catlist{
-        list-style-type: none;
-        width:80%;
-    }
-
-    .sb_main{
-        font-weight:500
-    }
-
-    .sb_main, .sb_catlink, .sb_addCat{
-        margin:0.5em 0;
-        display: flex;
-        align-items: center;
-        color:var(--white);
-        font-size:18px;
-        padding:12px;
-        border-radius: 8px;
-        cursor:pointer;
-    }
-
-    .sb_addCat{
-        color:var(--disabled)
-    }
-
-    .sb_addCat:hover{
-        color:var(--white);
-        background-color:var(--bright)
-    }
-
-    .sb_catlink{
-        font-weight:300;
-    }
-
-    .sb_catlink:hover{
-        background-color:var(--bright)
-    }
-
-
-    .sb_main:hover{
-        background-color:var(--bright)
-    }
-
-    .sb_span{
-        color:var(--disabled);
-        font-size:1em;
-        padding:8px;        
-    }
-
-    .sb_colortag{
-        width:12px;
-        height:12px;
-        display: block;
-        border-radius: 6px;
-        margin-right:12px;
-    }
-
-
 </style>

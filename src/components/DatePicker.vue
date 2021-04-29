@@ -98,7 +98,7 @@ export default {
 
 <style>
     .dp-input{
-        width:320px;
+        width:340px;
         font-size:1em;
         color:var(--caption);
         border:none;
