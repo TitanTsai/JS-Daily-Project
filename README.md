@@ -1,7 +1,11 @@
 # 關於
 
-製作簡易功能的TaskList，每日嘗試增加新功能。
+使用Vue.js編寫簡易功能的TaskList，每日嘗試增加新功能。
 
+Demo:
+![image](https://github.com/TitanTsai/JS-Daily-Project/blob/d14309960cf74b49871fafca1fb5e6903f7c3e8c/%E6%88%AA%E5%9C%96%202021-04-29%20%E4%B8%8B%E5%8D%883.01.59.png)
+
+```ChangeLog
 Day 1.Wireframe框架;
 
 Day 2.使用v-model新增Task，勾選Task後顯示刪除鈕;
@@ -25,9 +29,7 @@ Day 10.修正無法顯示分類顏色問題。
 Day 11.新增可篩選分類的側選單。
 
 Day 12.側選單元件化及RWD
-
-Demo:
-![image](https://github.com/TitanTsai/JS-Daily-Project/blob/d14309960cf74b49871fafca1fb5e6903f7c3e8c/%E6%88%AA%E5%9C%96%202021-04-29%20%E4%B8%8B%E5%8D%883.01.59.png)
+```
 
 ## 待解決
 
