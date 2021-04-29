@@ -3,16 +3,27 @@
 製作簡易功能的TaskList，每日嘗試增加新功能。
 
 Day 1.Wireframe框架;
+
 Day 2.使用v-model新增Task，勾選Task後顯示刪除鈕;
+
 Day 3.新增顏色支援，為不同分類顯示不同顏色的完成框。
+
 Day 4.輪播幻燈片（未使用）
+
 Day 5.更改vue cdn為vue cli的架構
+
 Day 6.製作日期選擇器元件結構
+
 Day 7.新增日期選擇器選擇功能
+
 Day 8.將日期選擇器元件嵌入Tasklist
+
 Day 9.分類選擇器元件，由typeList獲取分類名稱及色彩。
+
 Day 10.修正無法顯示分類顏色問題。
+
 Day 11.新增可篩選分類的側選單。
+
 Day 12.側選單元件化及RWD
 
 Demo:
