@@ -2,7 +2,7 @@
     <div class="menu_toggle" @click="showMenu=!showMenu">Toggle</div>
     <div class="sidebar">
         <ul class="sb_catlist">
-            <li class="sb_main">Overview</li>
+            <li class="sb_main" @click="filterSelected()">Overview</li>
             <li class="sb_span"><img src="../assets/images/sort.svg"> Category</li>
             <li class="sb_catlink" v-for="type in types" :key="type.typename" @click="filterSelected(type.typeName)"><span class="sb_colortag" :style="{backgroundColor:`${type.color}`}"></span>{{type.typeName}}</li>
             
