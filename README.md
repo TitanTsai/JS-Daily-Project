@@ -40,7 +40,7 @@ Demo:
   - 選單篩選按鈕在元件中無法使用
 
 + 資料庫：
-- 使用JSON格式，需配合json-server使用
+  - 使用JSON格式，需配合json-server使用
 
 
 # vue-daily
