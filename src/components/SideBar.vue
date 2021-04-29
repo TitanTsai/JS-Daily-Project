@@ -61,7 +61,7 @@ export default {
         display: flex;
         align-items: center;
         color:var(--white);
-        font-size:21px;
+        font-size:18px;
         padding:12px;
         border-radius: 8px;
         cursor:pointer;
@@ -91,9 +91,8 @@ export default {
 
     .sb_span{
         color:var(--disabled);
-        font-size:18px;
-        padding:8px;
-        
+        font-size:1em;
+        padding:8px;        
     }
 
     .sb_colortag{
