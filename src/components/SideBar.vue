@@ -1,13 +1,14 @@
 <template>
-    <div class="menu_toggle" @click="showMenu=!showMenu">Toggle</div>
-    <div class="sidebar">
-        <ul class="sb_catlist">
-            <li class="sb_main" @click="filterSelected()">Overview</li>
-            <li class="sb_span"><img src="../assets/images/sort.svg"> Category</li>
-            <li class="sb_catlink" v-for="type in types" :key="type.typename" @click="filterSelected(type.typeName)"><span class="sb_colortag" :style="{backgroundColor:`${type.color}`}"></span>{{type.typeName}}</li>
-            
-            <li class="sb_addCat">+ add category</li>
-        </ul>
+    <div>
+        <div class="menu_toggle" @click="showMenu=!showMenu"><img src="../assets/images/menu.svg"></div>
+        <div class="sidebar" v-if="showMenu">
+            <ul class="sb_catlist">
+                <li class="sb_main" @click="filterSelected()">Overview</li>
+                <li class="sb_span"><img src="../assets/images/sort.svg"> Category</li>
+                <li class="sb_catlink" v-for="type in types" :key="type.typename" @click="filterSelected(type.typeName)"><span class="sb_colortag" :style="{backgroundColor:`${type.color}`}"></span>{{type.typeName}}</li>
+                <li class="sb_addCat">+ add category</li>
+            </ul>
+        </div>
     </div>
 </template>
 
@@ -18,6 +19,8 @@ export default {
     data(){
         return{
             types:[],
+            showMenu: false,
+            winWidth: window.innerWidth
         }
     },
     methods:{
@@ -31,11 +34,27 @@ export default {
             })
         },
         filterSelected(value){
-            this.$emit('filterSelected',value)
+            this.$emit('filterSelected',value);
+            this.showMenu = false
+        },
+        getWidth(){
+            if(this.winWidth <= 768){
+                this.showMenu = false
+            }else{
+                this.showMenu = true
+            }
         }
     },
     created(){
-        this.getTask()
+        this.getTask();
+        this.getWidth()
+        
+    },
+    watch:{
+        winWidth(value){
+            this.winWidth = value
+            this.getWidth()
+        }
     }
 }
 </script>
@@ -111,7 +130,14 @@ export default {
     }
 
     .menu_toggle{
-        display:none;
+        display: none;
+        margin:1em;
+        padding:0.5em;
+        border-radius: 4px;
+    }
+
+    .menu_toggle:hover{
+        background-color: var(--highlight);
     }
 
     @media screen and (max-width:768px){
@@ -123,14 +149,10 @@ export default {
         }
 
         .sidebar{
-            background-color:var(--background);
-            width:60%;
-            display: none;
+            background-color: var(--upper);
+            box-shadow: 0px 3px 6px rgba(0,0,0,0.16);
         }
 
-        .sidebarShow{
-            display:block;
-        }
     }
 
 

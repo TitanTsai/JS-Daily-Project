@@ -4,7 +4,7 @@
             <SideBar @filterSelected="applyFilter"/>
         </div>
         <div class="row">
-            <div class="col-12 col-md-8 col-lg-4 task-container">
+            <div class="col-12 col-md-10 col-lg-4 task-container">
                 <TaskInput />
                 <TaskList :filterValue="filterName" />
             </div>
