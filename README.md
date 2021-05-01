@@ -16,9 +16,9 @@ Day 4.輪播幻燈片（未使用）
 
 Day 5.更改vue cdn為vue cli的架構
 
-Day 6.製作日期選擇器元件結構
-
-Day 7.新增日期選擇器選擇功能
+//Day 6.日期選擇器，見JS-DatePicker
+          
+//Day 7.日期選擇器，見JS-DatePicker
 
 Day 8.將日期選擇器元件嵌入Tasklist
 
