@@ -29,9 +29,7 @@ export default {
             .then(response=>{
                 this.types = response.data;
             })
-            .catch(error =>{
-                alert(console.log(error))
-            })
+            .catch(error =>console.log(error))
         },
         filterSelected(value){
             this.$emit('filterSelected',value);

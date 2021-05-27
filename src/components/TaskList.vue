@@ -75,13 +75,12 @@ export default {
         getTask(){
             axios.get('https://my-json-server.typicode.com/titantsai/JS-Daily-Project/taskList/')
             .then(response=>{
-
+                alert('my-json-server僅支援唯讀無法寫入或更改資料庫')
                 this.taskList = response.data;
                 this.filterList = this.taskList;
             })
-            .catch(()=>{
-                alert('This App requires JSON Server Running')
-            })
+            .catch(error=>console.log(error)
+            )
         },
 
         addTask(){
@@ -102,11 +101,11 @@ export default {
         },
 
         removeTask(index){
-            axios.delete('https://my-json-server.typicode.com/titantsai/JS-Daily-Project/taskList/' + index)
+            axios.delete(`https://my-json-server.typicode.com/titantsai/JS-Daily-Project/taskList/${index}`)
             .then(() => {this.taskList.splice(index,1)})
+            .then(this.getTask())
             .catch((error)=>{console.log(error)});
-            
-            this.getTask()
+
         },
 
         markDone(item){
