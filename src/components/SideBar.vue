@@ -25,7 +25,7 @@ export default {
     },
     methods:{
         getTask(){
-            axios.get('http://localhost:3000/types/')
+            axios.get('https://my-json-server.typicode.com/titantsai/JS-Daily-Project/types/')
             .then(response=>{
                 this.types = response.data;
             })
@@ -35,7 +35,6 @@ export default {
         },
         filterSelected(value){
             this.$emit('filterSelected',value);
-            this.showMenu = false
         },
         getWidth(){
             if(this.winWidth <= 768){

@@ -4,8 +4,7 @@
             <SideBar @filterSelected="applyFilter"/>
         </div>
         <div class="row">
-            <div class="col-12 col-md-10 col-lg-4 task-container">
-                <TaskInput />
+            <div class="col-12 col-md-10 col-lg-5 task-container">
                 <TaskList :filterValue="filterName" />
             </div>
         </div>
@@ -13,7 +12,6 @@
 </template>
 
 <script>
-import TaskInput from '@/components/TaskInput'
 import TaskList from '@/components/TaskList'
 import SideBar from '@/components/SideBar'
 export default {
@@ -25,7 +23,6 @@ export default {
     },
     components:{
         SideBar,
-        TaskInput,
         TaskList
     },
     methods:{
